@@ -6,6 +6,7 @@ Read our final project blog article: https://dev.to/frederick_aleokemalachi_/the
 Connect with the author on LinkedIn: Frederick Aleoke-Malachi
 
 My story
+
 After years of honing my skills as a software engineer, I found myself drawn to the world of real estate. I noticed the inefficiencies and frustrations people faced when trying to rent, buy or sell properties. I saw my friends and family members navigate a complex market filled with endless paperwork, hidden fees, and unreliable agents. I knew there had to be a better way.
 One evening, as I walked through a bustling neighborhood in Lagos, I overheard a conversation between two friends. They were lamenting how difficult it was to find trustworthy information about available properties. My mind began to race with ideas. What if there was a platform that could simplify the process, bring transparency, and connect buyers,renters and sellers directly?
 That night, the concept of Gidalo was born. I envisioned a real estate marketing platform that could revolutionize the way people bought, rented and sold homes. I wanted to create a space where properties could be listed quickly, buyers could find detailed and accurate information, and transactions could be completed smoothly.
