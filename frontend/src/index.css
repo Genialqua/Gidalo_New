@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.carousel-image {
+  height: 400px; /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio and cover the given dimension */
+}
