@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build'))); 
     
     app.get('*', (req,res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', '/src/screens/HomeScreen.jsx'))
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', '/frontend/src/screens/HomeScreen.jsx'))
 );
 } else {
     app.get('/', (req, res) =>{
