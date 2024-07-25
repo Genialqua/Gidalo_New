@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== 'production') {
     // Set static folder // Serve static files from the client/build folder
     app.use(express.static(path.join(__dirname, '/frontend/build'))); 
     
