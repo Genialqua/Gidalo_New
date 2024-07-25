@@ -7,8 +7,20 @@ import Property from '../models/propertyModel.js';
 const authUser = asyncHandler(async (req, res) => { 
     const {email, password} = req.body;
 
-    const user = await UserActivation.
-  res.send('auth user');
+    const user = await UserActivation.findOne({ email });
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            
+        });
+    } else {
+        res.status(401);
+        throw new Error('Invalid email or password');
+    }
 });
 
 // @desc    Auth user & get token

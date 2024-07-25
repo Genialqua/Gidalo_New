@@ -16,3 +16,8 @@ code {
   height: 400px; /* Set a fixed height */
   object-fit: cover; /* Maintain aspect ratio and cover the given dimension */
 }
+
+.scrollable-dropdown .scrollable-menu {
+  max-height: 200px; /* Adjust this height as needed */
+  overflow-y: auto;
+}

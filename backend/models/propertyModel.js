@@ -99,6 +99,10 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    state: {
+        type: String,
+        required: true,
+      },
     toilets: {
       type: Number,
       required: true,
