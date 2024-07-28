@@ -22,6 +22,7 @@ import DubaiPropertiesScreen from './screens/DubaiProperties.jsx';
 import ForRentScreen from './screens/forRent.jsx';
 import SharedApartmentScreen from './screens/sharedApartment.jsx';
 import ShortLetsScreen from './screens/shortLets.jsx';
+import LoginScreen from './screens/LoginScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
       <Route path="forRent" element={<ForRentScreen />} />
       <Route path="sharedapartment" element={<SharedApartmentScreen />} />
       <Route path="shortLets" element={<ShortLetsScreen />} />
+      <Route path="login" element={<LoginScreen />} />
     </Route>
   )
 );

@@ -1,9 +1,13 @@
 import { Badge, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logo from '../assets/logo.jpeg';
 import '../index.css'; // Make sure to import your CSS file
+import { logout } from '../slices/authSlice.js';
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { useNavigate, Link } from 'react-router-dom';
+import { SearchBox } from './SearchBox';
 
 const statesInNigeria = [
   "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
@@ -14,7 +18,24 @@ const statesInNigeria = [
 
 const Header = () => {
   const { favouriteItems } = useSelector((state) => state.favourite) || { favouriteItems: [] };
-  
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      // dispatch(resetFavorites());
+      navigate('/login');
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -32,21 +53,23 @@ const Header = () => {
               <LinkContainer to="/home">
                 <Nav.Link><strong>Home</strong></Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/forSale">
-                <Nav.Link><strong>For Sale</strong></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/forRent">
-                <Nav.Link><strong>For Rent</strong></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/distressSale">
-                <Nav.Link><strong>Distress Sale</strong></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/sharedApartment">
-                <Nav.Link><strong>Shared Apartment</strong></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/shortLets">
-                <Nav.Link><strong>Short-Lets</strong></Nav.Link>
-              </LinkContainer>
+              <NavDropdown title="Property Listings" id="property-listings-dropdown">
+                <LinkContainer to="/forSale">
+                  <NavDropdown.Item><strong>For Sale</strong></NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/forRent">
+                  <NavDropdown.Item><strong>For Rent</strong></NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/distressSale">
+                  <NavDropdown.Item><strong>Distress Sale</strong></NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/sharedApartment">
+                  <NavDropdown.Item><strong>Shared Apartment</strong></NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/shortLets">
+                  <NavDropdown.Item><strong>Short Lets</strong></NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
               <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
                 <div className="scrollable-menu">
                   {statesInNigeria.map((state) => (
@@ -61,23 +84,36 @@ const Header = () => {
               </LinkContainer>
             </Nav>
             <Nav className="ms-auto">
-              <LinkContainer to="/favourites">
-                <Nav.Link>
-                  <FaShoppingCart />
-                  mySelectionsCart
-                  {favouriteItems.length > 0 && (
-                    <Badge bg="primary" style={{ marginLeft: '5px' }}>
-                      {favouriteItems.length}
-                    </Badge>
-                  )}
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/signin">
-                <Nav.Link>
-                  <FaUser />
-                  Sign In
-                </Nav.Link>
-              </LinkContainer>
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id='username'>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>
+                      Profile
+                    </NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/favourites'>
+                    <NavDropdown.Item>
+                      <FaShoppingCart />
+                      mySelectionsCart
+                      {favouriteItems.length > 0 && (
+                        <Badge bg="primary" style={{ marginLeft: '5px' }}>
+                          {favouriteItems.length}
+                        </Badge>
+                      )}
+                    </NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <FaUser />
+                    Sign In
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
