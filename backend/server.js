@@ -19,7 +19,7 @@ const app = express();
 
 app.use(cors({
     origin: 'https://gidalo-new-frontend-fscil5a34.vercel.app', // Replace with your frontend URL
-    methods: 'GET,POST,PUT,DELETE',
+    methods: 'GET,POST,PUT,DELETE,FETCH,',
     credentials: true // Allow cookies to be sent
   }));
 
