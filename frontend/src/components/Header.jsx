@@ -6,8 +6,8 @@ import logo from '../assets/logo.jpeg';
 import '../index.css'; // Make sure to import your CSS file
 import { logout } from '../slices/authSlice.js';
 import { useLogoutMutation } from '../slices/usersApiSlice';
-import { useNavigate, Link } from 'react-router-dom';
-import { SearchBox } from './SearchBox';
+import { useNavigate } from 'react-router-dom';
+// import { SearchBox } from './SearchBox';
 
 const statesInNigeria = [
   "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
