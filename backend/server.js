@@ -34,13 +34,13 @@ if (process.env.NODE_ENV === 'production') {
     // app.get('*', (req, res) =>
     //     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     // );
-} else {
+// } else {
     app.get('/', (req, res) =>{
         res.send('API is running.....');  // Send a message when the server is running in production mode
     });
 }
 
-// Mount property routes at /api/properties
+// Mount property routes at /api/properties now
 app.use('/api/properties', propertyRoutes);
 // Mount user routes at /api/users
 app.use('/api/users', userRoutes);
