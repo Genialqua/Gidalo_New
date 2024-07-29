@@ -9,6 +9,7 @@ import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import propertyRoutes from './routes/propertyRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import credentials from './middleware/credentials.js';
 
 dotenv.config();
 
@@ -16,13 +17,13 @@ const port = process.env.PORT || 5001;
 
 connectDB();
 
-app.use(credentials);
 
-app.use(cors(corsOptions));
 
 const app = express();
 
+app.use(credentials);
 
+app.use(cors(corsOptions));
 
 // Body parser middleware
 app.use(express.json());

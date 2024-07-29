@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A real estate shopping platform",
   "type": "module",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",

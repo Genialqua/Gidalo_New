@@ -4,5 +4,5 @@ const allowedOrigins = [
     "https://www.gidalo.com",
   "https://gidalo.com"
   ];
-  
-  module.exports = allowedOrigins;
+
+  export default allowedOrigins;
