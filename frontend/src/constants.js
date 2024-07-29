@@ -1,7 +1,7 @@
 export const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://localhost:5001' 
-  : 'https://gidalo-new-backend-cs1q7b0lp-frederick-aleoke-malachis-projects.vercel.app'; // Define production URL
-
+  ? 'https://gidalo-new-backend-cs1q7b0lp-frederick-aleoke-malachis-projects.vercel.app'
+: 'https://localhost:5001' ; // Define production URL
+ 
 // export const BASE_URL = 'https://gidalo-new-backend-cs1q7b0lp-frederick-aleoke-malachis-projects.vercel.app';
 // export const BASE_URL = '';
 export const PROPERTIES_URL = '/api/properties';
