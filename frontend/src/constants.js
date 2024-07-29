@@ -2,8 +2,8 @@
 //   ? 'https://gidalo-new-backend-cs1q7b0lp-frederick-aleoke-malachis-projects.vercel.app'
 // : 'https://localhost:5001' ; // Define production URL
  
-export const BASE_URL = 'https://gidalo-new-backend-3ilzkkp25-frederick-aleoke-malachis-projects.vercel.app';
-// export const BASE_URL = '';
+// export const BASE_URL = 'https://gidalo-new-backend-3ilzkkp25-frederick-aleoke-malachis-projects.vercel.app';
+export const BASE_URL = '';
 export const PROPERTIES_URL = '/api/properties';
 export const USERS_URL = '/api/users';
 export const LOGIN_URL = '/api/auth/login';
