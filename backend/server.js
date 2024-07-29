@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
     // app.get('/', (req, res) =>{
     //     res.send('API is running.....');  // Send a message when the server is running in production mode
     // });
-}
+
 
 // Mount property routes at /api/properties now
 app.use('/api/properties', propertyRoutes);
@@ -58,7 +58,7 @@ app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-
+};
 
 
 // import express from 'express';
