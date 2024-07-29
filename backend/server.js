@@ -53,7 +53,7 @@ app.use('/api/properties', propertyRoutes);
 app.use('/api/users', userRoutes);
 
 // Error handling middleware
-app.use(notFound);
+// app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
