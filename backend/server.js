@@ -17,8 +17,6 @@ const port = process.env.PORT || 5001;
 
 connectDB();
 
-
-
 const app = express();
 
 app.use(credentials);
