@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import corsOptions from './config/corsOptions.js';
 import dotenv from 'dotenv'; // Load environment variables from.env file
 import path from 'path'; // Import path for handling and transforming file paths
 import { fileURLToPath } from 'url'; // Necessary for __dirname in ES modules
@@ -15,13 +16,13 @@ const port = process.env.PORT || 5001;
 
 connectDB();
 
+app.use(credentials);
+
+app.use(cors(corsOptions));
+
 const app = express();
 
-app.use(cors({
-    origin: 'https://gidalo-new-frontend-fscil5a34.vercel.app', // Replace with your frontend URL
-    methods: 'GET,POST,PUT,DELETE,FETCH,',
-    credentials: true // Allow cookies to be sent
-  }));
+
 
 // Body parser middleware
 app.use(express.json());
