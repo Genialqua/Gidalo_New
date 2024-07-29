@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import Property from '../components/Property.jsx';
+import Property from '../components/property.jsx';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
 import { useGetPropertiesQuery } from '../slices/propertiesApiSlice.js';
@@ -10,9 +10,9 @@ const DubaiPropertiesScreen = () => {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <Loader/>
       ) : error ? (
-        <Message variant="danger">{error?.message || error?.error}</Message>
+        <Message variant="danger" >{error?.message || error.error}</Message>
       ) : (
         <>
           <h1>Dubai Properties</h1>
