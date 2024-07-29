@@ -23,6 +23,10 @@ app.use(credentials);
 
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+  }) 
+
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
     // app.get('*', (req, res) =>
     //     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     // );
-} else {
+// } else {
     app.get('/', (req, res) =>{
         res.send('API is running.....');  // Send a message when the server is running in production mode
     });
