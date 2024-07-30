@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://gidalo-new-backend-4w71maf3r-frederick-aleoke-malachis-projects.vercel.app",
+  "proxy": "https://gidalo-new-backend-ll6s9f2wp-frederick-aleoke-malachis-projects.vercel.app",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
     "@testing-library/jest-dom": "^5.17.0",
