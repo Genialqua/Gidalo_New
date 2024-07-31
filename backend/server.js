@@ -25,7 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const allowedOrigins = [
-  "https://gidalo-new-frontend.vercel.app"
+  "https://gidalo-new-frontend.vercel.app",
+  "http://localhost:3000"
 ];
 
 const corsOptions = {
