@@ -26,8 +26,19 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "https://gidalo-new-frontend.vercel.app",
-  "http://localhost:3000"
+
 ];
+
+const credentials = (req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.header("Access-Control-Allow-Origin", origin);
+      res.header("Access-Control-Allow-Credentials", true);
+    }
+    next();
+  };
+
+  app.use(credentials);
 
 const corsOptions = {
   origin: (origin, callback) => {
