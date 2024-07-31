@@ -50,10 +50,10 @@ if (process.env.NODE_ENV === 'production') {
   // Serve static files from the client/build folder
 //   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  );
-} else {
+//   app.get('*', (req, res) =>
+//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+//   );
+// } else {
   app.get('/', (req, res) => {
     res.send('API is running.....'); // Send a message when the server is running in development mode
   });
