@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import corsOptions from './config/corsOptions.js';
-import dotenv from 'dotenv'; // Load environment variables from.env file
+import dotenv from 'dotenv'; // Load environment variables from .env file
 import path from 'path'; // Import path for handling and transforming file paths
 import { fileURLToPath } from 'url'; // Necessary for __dirname in ES modules
 import cookieParser from 'cookie-parser';
@@ -9,7 +8,6 @@ import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import propertyRoutes from './routes/propertyRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import credentials from './middleware/credentials.js';
 
 dotenv.config();
 
@@ -17,25 +15,7 @@ const port = process.env.PORT || 5001;
 
 connectDB();
 
-// const handleCors = function (req, res, next) {
-//     res.set('Access-Control-Allow-Origin', '*');
-//     next();
-// };
-
 const app = express();
-
-app.use(credentials);
-// app.use(handleCors);
-// app.get('/', function (req, res) {
-//     res.json(req.params);
-// });
-
-app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-    
-//   }) 
 
 // Body parser middleware
 app.use(express.json());
@@ -44,27 +24,42 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://gidalo-new-frontend.vercel.app'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+
 // Necessary for __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.use(express.static(__dirname));
-
 if (process.env.NODE_ENV === 'production') {
-    // Set static folder // Serve static files from the client/build folder
-    app.use(express.static(path.join(__dirname, '/frontend/build'))); 
-    
-    app.get('*', (req, res) =>
-       res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-     );
- } else {
-    app.get('/', (req, res) =>{
-        res.send('API is running.....');  // Send a message when the server is running in production mode
-    });
-};
+  // Serve static files from the client/build folder
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
 
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running.....'); // Send a message when the server is running in development mode
+  });
+}
 
-// Mount property routes at /api/properties now
+// Mount property routes at /api/properties
 app.use('/api/properties', propertyRoutes);
 // Mount user routes at /api/users
 app.use('/api/users', userRoutes);
@@ -74,6 +69,90 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
+
+
+
+
+// import express from 'express';
+// import cors from 'cors';
+// import dotenv from 'dotenv'; // Load environment variables from.env file
+// import path from 'path'; // Import path for handling and transforming file paths
+// import { fileURLToPath } from 'url'; // Necessary for __dirname in ES modules
+// import cookieParser from 'cookie-parser';
+// import connectDB from './config/db.js';
+// import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+// import propertyRoutes from './routes/propertyRoutes.js';
+// import userRoutes from './routes/userRoutes.js';
+
+
+// dotenv.config();
+
+// const port = process.env.PORT || 5001;
+
+// connectDB();
+
+// const app = express();
+
+// // Body parser middleware
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// // Cookie parser middleware
+// app.use(cookieParser());
+
+// const allowedOrigins = [
+//     'http://localhost:3000',
+//     'https://gidalo-new-frontend.vercel.app'
+//   ];
+  
+//   const corsOptions = {
+//     origin: (origin, callback) => {
+//       if (allowedOrigins.includes(origin) || !origin) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
+//     credentials: true
+//   };
+  
+//   app.use(cors(corsOptions));
+  
+
+// app.use(cors());
+
+// // Necessary for __dirname in ES modules
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// // app.use(express.static(__dirname));
+
+// if (process.env.NODE_ENV === 'production') {
+//     // Set static folder // Serve static files from the client/build folder
+//     app.use(express.static(path.join(__dirname, '/frontend/build'))); 
+    
+//     app.get('*', (req, res) =>
+//        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+//      );
+//  } else {
+//     app.get('/', (req, res) =>{
+//         res.send('API is running.....');  // Send a message when the server is running in production mode
+//     });
+// };
+
+
+// // Mount property routes at /api/properties now
+// app.use('/api/properties', propertyRoutes);
+// // Mount user routes at /api/users
+// app.use('/api/users', userRoutes);
+
+// // Error handling middleware
+// app.use(notFound);
+// app.use(errorHandler);
+
+// app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 
 
