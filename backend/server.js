@@ -17,18 +17,18 @@ const port = process.env.PORT || 5001;
 
 connectDB();
 
-const handleCors = function (req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    next();
-};
+// const handleCors = function (req, res, next) {
+//     res.set('Access-Control-Allow-Origin', '*');
+//     next();
+// };
 
 const app = express();
 
 app.use(credentials);
-app.use(handleCors);
-app.get('/', function (req, res) {
-    res.json(req.params);
-});
+// app.use(handleCors);
+// app.get('/', function (req, res) {
+//     res.json(req.params);
+// });
 
 app.use(cors(corsOptions));
 
@@ -48,16 +48,16 @@ app.use(cookieParser());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder // Serve static files from the client/build folder
-    //app.use(express.static(path.join(__dirname, '/frontend/build'))); 
+    app.use(express.static(path.join(__dirname, '/frontend/build'))); 
     
-    // app.get('*', (req, res) =>
-    //     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-    // );
-// } else {
+    app.get('*', (req, res) =>
+       res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+     );
+ } else {
     app.get('/', (req, res) =>{
         res.send('API is running.....');  // Send a message when the server is running in production mode
     });
