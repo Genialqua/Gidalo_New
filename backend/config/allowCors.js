@@ -1,3 +1,5 @@
+import { response } from "express";
+
 const allowCors = (req, res) => {
     const allowedOrigins = [
       'https://gidalo-new-frontend.vercel.app',
@@ -10,9 +12,9 @@ const allowCors = (req, res) => {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
     
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Accept-Version, X-Requested-With, X-CSRF-Token, Content-Length, Content-MD5, Date, X-Api-Version');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    response.setHeader('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']);
+    response.setHeader('Access-Control-Allow-Headers', ['Content-Type', 'Accept', 'Accept-Version', 'X-Requested-With', 'X-CSRF-Token', 'Content-Length', 'Content-MD5', 'Date', 'X-Api-Version']);
+    response.setHeader('Access-Control-Allow-Credentials', 'true');
   
     if (req.method === 'OPTIONS') {
       res.status(200).end();
