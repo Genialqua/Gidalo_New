@@ -18,14 +18,14 @@ connectDB();
 
 const app = express();
 
+app.use(cors(allowCors));
+
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Cookie parser middleware
 app.use(cookieParser());
-
-app.use(cors(allowCors));
 
 // Necessary for __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
