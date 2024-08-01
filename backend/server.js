@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import allowCors from './config/allowCors.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 import path from 'path'; // Import path for handling and transforming file paths
 import { fileURLToPath } from 'url'; // Necessary for __dirname in ES modules
@@ -24,34 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
-const allowedOrigins = [
-  "https://gidalo-new-frontend.vercel.app",
-
-];
-
-const credentials = (req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.header("Access-Control-Allow-Origin", origin);
-      res.header("Access-Control-Allow-Credentials", true);
-    }
-    next();
-  };
-
-  app.use(credentials);
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-};
-
-app.use(cors(corsOptions));
+app.use(cors(allowCors));
 
 // Necessary for __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
