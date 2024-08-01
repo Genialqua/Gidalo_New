@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';
+//import cors from 'cors';
 import allowCors from './config/allowCors.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 import path from 'path'; // Import path for handling and transforming file paths
@@ -18,7 +18,7 @@ connectDB();
 
 const app = express();
 
-app.use(cors(allowCors));
+app.use(allowCors((req, res, next) => next()));
 
 // Body parser middleware
 app.use(express.json());
