@@ -1,4 +1,4 @@
-const allowCors = (req, res, next) => {
+const allowCors = fn => async (req, res, next) => {
     const allowedOrigins = [
         'https://gidalo-new-frontend.vercel.app',
         'http://localhost:3000'
@@ -16,10 +16,12 @@ const allowCors = (req, res, next) => {
   
     if (req.method === 'OPTIONS') {
         res.status(200).end();
-    } else {
-        next();
+        return
     }
-};
+    
+    return await fn(req, res);
+    }
+
   
 export default allowCors;
 
