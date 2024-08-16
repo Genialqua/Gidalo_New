@@ -2,10 +2,16 @@ import { Row, Col } from 'react-bootstrap';
 import Property from '../components/property.jsx';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
-import { useGetPropertiesQuery } from '../slices/propertiesApiSlice.js';
+//import { useGetPropertiesQuery } from '../slices/propertiesApiSlice.js';
+import { useGetPropertiesByCategoryQuery } from '../slices/propertiesApiSlice.js';
 
 const DistressSaleScreen = () => {
-  const { data: properties, isLoading, error } = useGetPropertiesQuery();
+  const { data: properties, isLoading, error } = useGetPropertiesByCategoryQuery({
+    category: 'distress sale',
+  });
+
+  // Convert properties to an array if it's not already
+  const propertiesArray = Array.isArray(properties) ? properties : [];
 
   return (
     <>
@@ -17,13 +23,11 @@ const DistressSaleScreen = () => {
         <>
           <h1>Distress Sales</h1>
           <Row>
-            {properties
-              .filter((property) => property.category.toLowerCase() === 'distress sale')
-              .map((property) => (
-                <Col key={property._id} sm={12} md={6} lg={4} xl={3}>
-                  <Property property={property} />
-                </Col>
-              ))}
+            {propertiesArray.map((property) => (
+              <Col key={property._id} sm={12} md={6} lg={4} xl={3}>
+                <Property property={property} />
+              </Col>
+            ))}
           </Row>
         </>
       )}
@@ -32,3 +36,4 @@ const DistressSaleScreen = () => {
 };
 
 export default DistressSaleScreen;
+

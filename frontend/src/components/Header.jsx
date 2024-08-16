@@ -7,14 +7,14 @@ import '../index.css'; // Make sure to import your CSS file
 import { logout } from '../slices/authSlice.js';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { useNavigate } from 'react-router-dom';
-// import { SearchBox } from './SearchBox';
+import  SearchBox  from './SearchBox.jsx';
 
-const statesInNigeria = [
-  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
-  "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina",
-  "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau",
-  "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
-];
+// const statesInNigeria = [
+//   "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
+//   "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina",
+//   "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau",
+//   "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
+// ];
 
 const Header = () => {
   const { favouriteItems } = useSelector((state) => state.favourite) || { favouriteItems: [] };
@@ -29,7 +29,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      // dispatch(resetFavorites());
+      //dispatch(resetFavorites());
       navigate('/login');
     } catch (err) {
       console.error(err);
@@ -50,13 +50,15 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <LinkContainer to="/home">
+
+              <LinkContainer to="/">
                 <Nav.Link><strong>Home</strong></Nav.Link>
               </LinkContainer>
-              <NavDropdown title="Property Listings" id="property-listings-dropdown">
-                <LinkContainer to="/forSale">
-                  <NavDropdown.Item><strong>For Sale</strong></NavDropdown.Item>
-                </LinkContainer>
+              
+              {/* <NavDropdown title="" id="property-listings-dropdown"> */}
+                
+                  {/* <NavDropdown.Item as={Link} to="/forSale"><strong>For Sale</strong></NavDropdown.Item>
+                
                 <LinkContainer to="/forRent">
                   <NavDropdown.Item><strong>For Rent</strong></NavDropdown.Item>
                 </LinkContainer>
@@ -68,9 +70,9 @@ const Header = () => {
                 </LinkContainer>
                 <LinkContainer to="/shortLets">
                   <NavDropdown.Item><strong>Short Lets</strong></NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-              <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
+                </LinkContainer> */}
+              {/* </NavDropdown> */}
+              {/* <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
                 <div className="scrollable-menu">
                   {statesInNigeria.map((state) => (
                     <LinkContainer key={state} to={`/state/${state}`}>
@@ -78,10 +80,11 @@ const Header = () => {
                     </LinkContainer>
                   ))}
                 </div>
-              </NavDropdown>
-              <LinkContainer to="/dubaiProperties">
+              </NavDropdown> */}
+              {/* <LinkContainer to="/dubaiProperties">
                 <Nav.Link><strong>Dubai Properties</strong></Nav.Link>
-              </LinkContainer>
+              </LinkContainer> */}
+              <SearchBox />
             </Nav>
             <Nav className="ms-auto">
               {userInfo ? (
@@ -113,6 +116,21 @@ const Header = () => {
                     Sign In
                   </Nav.Link>
                 </LinkContainer>
+              )}
+
+              {/* Admin Dropdown */}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin' id='adminmenu'>
+                  <LinkContainer to='/admin/bookinglist'>
+                    <NavDropdown.Item>Bookings</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/propertylist'>
+                    <NavDropdown.Item>List of Properties</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>

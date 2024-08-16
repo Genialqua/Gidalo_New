@@ -62,6 +62,7 @@ const FavouriteScreen = () => {
                     <Button
                       type="button"
                       variant="dark"
+                      className='btn-m mx-2 my-2'
                       onClick={() => removeFromFavouritesHandler(item._id)}
                     >
                       <FaTrash />

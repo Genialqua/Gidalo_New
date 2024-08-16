@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateFavourite } from "../utils/favouritesUtils.js";
 
+
 const initialState = localStorage.getItem('favourite') 
   ? JSON.parse(localStorage.getItem('favourite')) 
   : { favouriteItems: [] };

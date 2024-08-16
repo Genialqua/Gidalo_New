@@ -25,7 +25,7 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
-const propertySchema = new mongoose.Schema(
+const propertySchema =  mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -54,24 +54,18 @@ const propertySchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    nearbySchools: [
-      {
-        name: { type: String, required: true },
-        distance: { type: Number, required: false },
-      },
-    ],
-    nearbyHospitals: [
-      {
-        name: { type: String, required: true },
-        distance: { type: Number, required: false },
-      },
-    ],
-    nearbySuperMarkets: [
-      {
-        name: { type: String, required: true },
-        distance: { type: Number, required: false },
-      },
-    ],
+    nearbySchools: {
+      type: String, 
+      required: false,
+    },
+    nearbyHospitals: {
+      type: String, 
+      required: false,
+    },
+    nearbySuperMarkets:{
+      type: String, 
+      required: false ,
+    },
     numReviews: {
       type: Number,
       required: true,
@@ -112,18 +106,16 @@ const propertySchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    images: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    images: {
+      type: [String], // An array of strings
+      required: true, // or false if it's optional
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Property = mongoose.model("Property", propertySchema);
+const Property = mongoose.model('Property', propertySchema);
 
 export default Property;

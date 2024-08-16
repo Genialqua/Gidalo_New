@@ -4,10 +4,36 @@ import Property from '../models/propertyModel.js';
 // @desc    Fetch all Properties
 // @route   GET /api/Properties
 // @access  Public
-const getProperties = asyncHandler(async (req, res) => { 
-    const properties = await Property.find({});
-  res.json(properties);
+const getProperties = asyncHandler(async (req, res) => {
+  const pageSize = 4; // Set a default value for pagination
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword
+    ? {
+        $or: [
+          { title: { $regex: req.query.keyword, $options: 'i' } },
+          { category: { $regex: req.query.keyword, $options: 'i' } },
+          { description: { $regex: req.query.keyword, $options: 'i' } },
+          { location: { $regex: req.query.keyword, $options: 'i' } },
+          
+          // Add other fields here as needed
+        ],
+      }
+    : {};
+    const category = req.params.category
+        ? {
+              category: req.params.category,
+          }
+        : {};
+
+  const count = await Property.countDocuments({ ...keyword, ...category });
+  const properties = await Property.find({ ...keyword, ...category})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ properties, page, pages: Math.ceil(count / pageSize) });
 });
+
 
 // @desc    Fetch single property
 // @route   GET /api/properties/:id
@@ -22,130 +48,157 @@ const getPropertyById = asyncHandler(async (req, res) => {
   }
 });
 
-// // @desc    Create a property
-// // @route   POST /api/Properties
-// // @access  Private/Admin
-// const createProperty = asyncHandler(async (req, res) => {
-//   const property = new Property({
-//     title: 'Sample name',
-//     price: 0,
-//     user: req.user._id,
-//     images: '/images/sample.jpg',
-//     location: 'Sample brand',
-//     category: 'Sample category',
-//     countInStock: 0,
-//     numReviews: 0,
-//     description: 'Sample description',
-//     bedrooms: '3',
-//     bathrooms: '2',
-//     swimmingPool: false,
-//     parkingSpace: 0,
-//     toilets: '2',
-//     nearbySchools: ['Troika', 'Rehoboth'],
-//     nearbyHospitals: ['General Hospital', 'ICU'],
-//     nearbySupermarkets: ['Sample supermarket', 'Sample supermarket 2'],
-//   });
+// @desc    Create a property
+// @route   POST /api/Properties
+// @access  Private/Admin
+const createProperty = asyncHandler(async (req, res) => {
+  const property = new Property({
+    title: '4 Bedroom Apartment',
+    price: 'N100,000,000',
+    user: req.user._id,
+    images: [],
+    location: 'Lekki',
+    category: 'category here',
+    countInStock: 0,
+    numReviews: 0,
+    description: 'description here',
+    bedrooms: 3,
+    bathrooms: 3,
+    swimmingPool: false,
+    parkingSpace: 1,
+    toilets: 2,
+    rating: 1,
+    state: 'Lagos',
+    reviews: [],
+    nearbySchools: 'School name here',
+    nearbyHospitals: 'Hospital name here',
+    nearbySupermarkets: 'Supermarket name here',
+  });
 
-//   const createdProperty = await property.save();
-//   res.status(201).json(createdProperty);
-// });
+  const createdProperty = await property.save();
+  res.status(201).json(createdProperty);
+});
 
-// // @desc    Update a property
-// // @route   PUT /api/Properties/:id
-// // @access  Private/Admin
-// const updateproperty = asyncHandler(async (req, res) => {
-//   const { name, price, description, image, brand, category, countInStock } =
-//     req.body;
+// @desc    Update a property
+// @route   PUT /api/Properties/:id
+// @access  Private/Admin
 
-//   const property = await property.findById(req.params.id);
 
-//   if (property) {
-//     property.title = title;
-//     property.price = price;
-//     property.description = description;
-//     property.images = images;
-//     property.category = category;
-//     property.countInStock = countInStock;
+const updateProperty = asyncHandler(async (req, res) => {
+  const { 
+    title, price, description, images, category, countInStock,
+    location, bedrooms, bathrooms, swimmingPool, parkingSpace, toilets,
+    state, nearbySchools, nearbyHospitals, nearbySupermarkets, numReviews 
+  } = req.body;
 
-//     const updatedProperty = await property.save();
-//     res.json(updatedProperty);
-//   } else {
-//     res.status(404);
-//     throw new Error('Property not found');
-//   }
-// });
+  // Ensure that nearbySchools, nearbyHospitals, and nearbySupermarkets are arrays
+  const foundProperty = await Property.findById(req.params.id);
 
-// // @desc    Delete a property
-// // @route   DELETE /api/Properties/:id
-// // @access  Private/Admin
-// const deleteproperty = asyncHandler(async (req, res) => {
-//   const property = await Property.findById(req.params.id);
+  if (foundProperty) {
+    foundProperty.title = title;
+    foundProperty.price = price;
+    foundProperty.description = description;
 
-//   if (property) {
-//     await Property.deleteOne({ _id: property._id });
-//     res.json({ message: 'Property removed' });
-//   } else {
-//     res.status(404);
-//     throw new Error('Property not found');
-//   }
-// });
+    foundProperty.images = Array.isArray(images) && images.every(img => typeof img === 'string') 
+                           ? images 
+                           : [];
 
-// // @desc    Create new review
-// // @route   POST /api/Properties/:id/reviews
-// // @access  Private
-// const createPropertyReview = asyncHandler(async (req, res) => {
-//   const { rating, comment } = req.body;
+    foundProperty.category = category;
+    foundProperty.countInStock = countInStock;
+    foundProperty.location = location;
+    foundProperty.bedrooms = bedrooms;
+    foundProperty.bathrooms = bathrooms;
+    foundProperty.swimmingPool = swimmingPool;
+    foundProperty.parkingSpace = parkingSpace;
+    foundProperty.toilets = toilets;
+    foundProperty.state = state;
 
-//   const property = await Property.findById(req.params.id);
+    // Ensure correct data types
+    foundProperty.nearbySchools = nearbySchools || [];
+    foundProperty.nearbyHospitals = nearbyHospitals || [];
+    foundProperty.nearbySupermarkets = nearbySupermarkets || [];
+    foundProperty.numReviews = numReviews;
 
-//   if (property) {
-//     const alreadyReviewed = property.reviews.find(
-//       (r) => r.user.toString() === req.user._id.toString()
-//     );
+    const updatedProperty = await foundProperty.save();
+    res.json(updatedProperty);
+  } else {
+    res.status(404);
+    throw new Error('Property not found');
+  }
+});
 
-//     if (alreadyReviewed) {
-//       res.status(400);
-//       throw new Error('Property already reviewed');
-//     }
 
-//     const review = {
-//       name: req.user.name,
-//       rating: Number(rating),
-//       comment,
-//       user: req.user._id,
-//     };
+// @desc    Delete a property
+// @route   DELETE /api/Properties/:id
+// @access  Private/Admin
+const deleteproperty = asyncHandler(async (req, res) => {
+  const property = await Property.findById(req.params.id);
 
-//     property.reviews.push(review);
+  if (property) {
+    await Property.deleteOne({ _id: property._id });
+    res.json({ message: 'Property removed' });
+  } else {
+    res.status(404);
+    throw new Error('Property not found');
+  }
+});
 
-//     property.numReviews = property.reviews.length;
+// @desc    Create new review
+// @route   POST /api/Properties/:id/reviews
+// @access  Private
+const createPropertyReview = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
 
-//     property.rating =
-//       property.reviews.reduce((acc, item) => item.rating + acc, 0) /
-//       property.reviews.length;
+  const property = await Property.findById(req.params.id);
 
-//     await property.save();
-//     res.status(201).json({ message: 'Review added' });
-//   } else {
-//     res.status(404);
-//     throw new Error('Property not found');
-//   }
-// });
+  if (property) {
+    const alreadyReviewed = property.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
 
-// // @desc    Get top rated Properties
-// // @route   GET /api/Properties/top
-// // @access  Public
-// const getTopProperties = asyncHandler(async (req, res) => {
-//   const Properties = await Property.find({}).sort({ rating: -1 }).limit(3);
+    if (alreadyReviewed) {
+      res.status(400);
+      throw new Error('Property already reviewed');
+    }
 
-//   res.json(Properties);
-// });
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    property.reviews.push(review);
+
+    property.numReviews = property.reviews.length;
+
+    property.rating =
+      property.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      property.reviews.length;
+
+    await property.save();
+    res.status(201).json({ message: 'Review added' });
+  } else {
+    res.status(404);
+    throw new Error('Property not found');
+  }
+});
+
+// @desc    Get top rated Properties
+// @route   GET /api/Properties/top
+// @access  Public
+const getTopProperties = asyncHandler(async (req, res) => {
+  const properties = await Property.find({}).sort({ rating: -1 }).limit(3);
+
+  res.json(properties);
+});
 
 export {
   getProperties,
   getPropertyById,
-//   createProperty,
-//   updateproperty,
-//   deleteproperty,
-//   createPropertyReview,
-//   getTopProperties,
+  createProperty,
+   updateProperty,
+   deleteproperty,
+   createPropertyReview,
+   getTopProperties,
 };

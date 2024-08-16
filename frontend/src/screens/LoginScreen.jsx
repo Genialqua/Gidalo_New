@@ -70,7 +70,8 @@ const LoginScreen = () => {
                 { isLoading && <Loader /> }
                 <Row className="py-3">
                     <Col>
-                New User?<Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='my-2' >
+                New User?{' '}
+                <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='my-2' >
                     Create an Account
                 </Link>
                 </Col>

@@ -6,10 +6,12 @@ export const BASE_URL = 'https://gidalo-new-backend.vercel.app';
 //export const BASE_URL = '';
 export const PROPERTIES_URL = '/api/properties';
 export const USERS_URL = '/api/users';
+export const FAVOURITES_URL = '/api/favourites';
 export const LOGIN_URL = '/api/auth/login';
 export const REGISTER_URL = '/api/auth/register';
+export const UPLOADS_URL = '/api/upload';
 export const CURRENT_USER_URL = '/api/auth/currentuser';
-export const FAVOURITES_URL = '/api/favourites';
+
 export const ADD_FAVOURITE_URL = '/api/favourites/add';
 export const REMOVE_FAVOURITE_URL = '/api/favourites/remove';
 export const UPDATE_USER_URL = '/api/users/update';
