@@ -51,7 +51,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
 
-              <LinkContainer to="/">
+              <LinkContainer to="/" className='mx-3' >
                 <Nav.Link><strong>Home</strong></Nav.Link>
               </LinkContainer>
               
@@ -84,9 +84,11 @@ const Header = () => {
               {/* <LinkContainer to="/dubaiProperties">
                 <Nav.Link><strong>Dubai Properties</strong></Nav.Link>
               </LinkContainer> */}
-              <SearchBox />
+              
             </Nav>
+            
             <Nav className="ms-auto">
+            <SearchBox />
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
