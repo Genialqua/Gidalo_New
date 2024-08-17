@@ -35,8 +35,8 @@ app.use(cookieParser());
 
 
 if (process.env.NODE_ENV === 'production') {
-  //const __dirname = path.resolve();
-  const __dirname = path.dirname(__filename);
+  const __dirname = path.resolve();
+  //const __dirname = path.dirname(__filename);
   app.use('/uploads', express.static('/var/data/uploads'));
   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
