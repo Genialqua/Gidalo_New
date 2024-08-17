@@ -126,7 +126,7 @@ const PropertyListScreen = () => {
 
                     <Button
                       variant='danger'
-                      className='btn-sm mx-2'
+                      className='btn-sm'
                       onClick={() => deleteHandler(property._id)}
                     >
                       <FaTrash style={{ color: 'white' }} />

@@ -45,10 +45,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `${PROPERTIES_URL}`,
         method: 'POST',
-        //  credentials: 'include',
-        //  headers: {
-        //    'Content-Type': 'application/json',
-        //  },
+         credentials: 'include',
+         headers: {
+           'Content-Type': 'application/json',
+         },
       }),
       invalidatesTags: ['Property'],
     }),
@@ -57,10 +57,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: `${PROPERTIES_URL}/${data.propertyId}`,
         method: 'PUT',
         body: data,
-        // credentials: 'include',
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }),
       invalidatesTags: ['Properties'],
     }),
