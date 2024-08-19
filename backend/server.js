@@ -15,9 +15,6 @@ import uploadRoutes from './routes/uploadRoutes.js';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-//const __dirname = path.dirname(__filename);
-
 const port = process.env.PORT || 5001;
 
 connectDB();
@@ -33,25 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
-
-if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  app.use('/uploads', express.static('/var/data/uploads'));
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
-
-  // app.get('*', (req, res) =>
-  //   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  // );
-} else {
-  const __dirname = path.resolve();
-  app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-  app.get('/', (req, res) => {
-    res.send('API is running....');
-  });
-}
-
-
-
 // Mount property routes at /api/properties
 app.use('/api/properties', propertyRoutes);
 // Mount user routes at /api/users
@@ -60,6 +38,28 @@ app.use('/api/users', userRoutes);
 app.use('/api/favourites', favouriteRoutes);
 // Mount upload routes at /api/upload
 app.use('/api/upload', uploadRoutes);
+
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(__filename);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+// if (process.env.NODE_ENV === 'production') {
+//   const __dirname = path.resolve();
+//   app.use('/uploads', express.static('/var/data/uploads'));
+//   app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+//    app.get('*', (req, res) =>
+//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')));
+// } else {
+//   const __dirname = path.resolve();
+//   app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+//   app.get('/', (req, res) => {
+//     res.send('API is running....');
+//   });
+// }
+
 
 // Error handling middleware
 app.use(notFound);

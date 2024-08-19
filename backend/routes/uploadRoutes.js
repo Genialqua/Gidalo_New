@@ -33,16 +33,17 @@ const uploadMultipleImages = upload.array('images', 5); // Adjust the number as 
 
 router.post('/', (req, res) => {
   uploadMultipleImages(req, res, function (err) {
-    if (err) {
-      return res.status(400).send({ message: err.message });
-    }
-
     const filePaths = req.files.map(file => `/${file.path}`);
     
     res.status(200).send({
       message: 'Images uploaded successfully',
       images: filePaths,
     });
+    if (err) {
+      return res.status(400).send({ message: err.message });
+    }
+
+    
   });
 });
 
