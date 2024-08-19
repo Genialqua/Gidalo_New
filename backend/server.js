@@ -12,7 +12,7 @@ import favouriteRoutes from './routes/favouriteRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 
 
-
+// Environment configuration  
 dotenv.config();
 
 const port = process.env.PORT || 5001;
@@ -66,21 +66,3 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-
-// // Necessary for __dirname in ES modules
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
-// if (process.env.NODE_ENV === 'production') {
-//   // Serve static files from the client/build folder
-// //   app.use(express.static(path.join(__dirname, '/frontend/build')));
-
-// //   app.get('*', (req, res) =>
-// //     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-// //   );
-// // } else {
-//   app.get('/', (req, res) => {
-//     res.send('API is running.....'); // Send a message when the server is running in development mode
-//   });
-// }
