@@ -11,7 +11,10 @@ import Meta from '../components/Meta';
 const HomeScreen = () => {
   const { pageNumber = 1, keyword = '' } = useParams(); // Default values
 
-  const { data, isLoading, error } = useGetPropertiesQuery({ keyword, pageNumber });
+  const { data, isLoading, error } = useGetPropertiesQuery({ 
+    keyword, 
+    pageNumber,
+  });
 
   return (
     <>
@@ -25,23 +28,27 @@ const HomeScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error?.data?.message || error.error}</Message>
+        <Message variant='danger'>
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <Meta />
-          <h1>Latest Properties</h1>
+          <h1>Properties List</h1>
           <Row>
             {data.properties.map((property) => (
               <Col key={property._id} sm={12} md={6} lg={4} xl={3}>
-                <Property property={property} />
+                <Link to={`/property/${property._id}`}>
+                  <Property property={property} />
+                </Link>
               </Col>
             ))}
           </Row>
-          { <Paginate 
+           <Paginate 
             pages={data.pages} 
             page={data.page} 
             keyword={keyword} 
-          /> }
+          /> 
         </>
       )}
     </>
@@ -49,4 +56,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-

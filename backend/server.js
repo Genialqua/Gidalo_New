@@ -12,11 +12,8 @@ import favouriteRoutes from './routes/favouriteRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 
 
-
+// Environment configuration  
 dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-//const __dirname = path.dirname(__filename);
 
 const port = process.env.PORT || 5001;
 
@@ -33,26 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
-
-if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  //const __dirname = path.dirname(__filename);
-  app.use('/uploads', express.static('/var/data/uploads'));
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
-
-  app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
-  );
-} else {
-  const __dirname = path.resolve();
-  app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-  app.get('/', (req, res) => {
-    res.send('API is running....');
-  });
-}
-
-
-
 // Mount property routes at /api/properties
 app.use('/api/properties', propertyRoutes);
 // Mount user routes at /api/users
@@ -62,6 +39,11 @@ app.use('/api/favourites', favouriteRoutes);
 // Mount upload routes at /api/upload
 app.use('/api/upload', uploadRoutes);
 
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+
 // Error handling middleware
 app.use(notFound);
 app.use(errorHandler);
@@ -69,19 +51,22 @@ app.use(errorHandler);
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 
-// // Necessary for __dirname in ES modules
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+
+
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(__filename);
 
 // if (process.env.NODE_ENV === 'production') {
-//   // Serve static files from the client/build folder
-// //   app.use(express.static(path.join(__dirname, '/frontend/build')));
+//   const __dirname = path.resolve();
+//   app.use('/uploads', express.static('/var/data/uploads'));
+//   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-// //   app.get('*', (req, res) =>
-// //     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-// //   );
-// // } else {
+//    app.get('*', (req, res) =>
+//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')));
+// } else {
+//   const __dirname = path.resolve();
+//   app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 //   app.get('/', (req, res) => {
-//     res.send('API is running.....'); // Send a message when the server is running in development mode
+//     res.send('API is running....');
 //   });
 // }

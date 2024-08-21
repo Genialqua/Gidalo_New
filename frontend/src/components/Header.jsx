@@ -1,20 +1,19 @@
 import { Badge, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
-import '../index.css'; // Make sure to import your CSS file
+import '../index.css';
 import { logout } from '../slices/authSlice.js';
 import { useLogoutMutation } from '../slices/usersApiSlice';
-import { useNavigate } from 'react-router-dom';
-import  SearchBox  from './SearchBox.jsx';
+import SearchBox from './SearchBox.jsx';
 
-// const statesInNigeria = [
-//   "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
-//   "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina",
-//   "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau",
-//   "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
-// ];
+const statesInNigeria = [
+  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River",
+  "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina",
+  "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau",
+  "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
+];
 
 const Header = () => {
   const { favouriteItems } = useSelector((state) => state.favourite) || { favouriteItems: [] };
@@ -29,7 +28,6 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      //dispatch(resetFavorites());
       navigate('/login');
     } catch (err) {
       console.error(err);
@@ -40,98 +38,90 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>
-              <img src={logo} alt="Gidalo logo" width="30" height="24" style={{ marginRight: '10px' }} />
-              Gidalo
-            </Navbar.Brand>
-          </LinkContainer>
+          <Link to="/" className="navbar-brand">
+            <img src={logo} alt="Gidalo logo" width="30" height="24" style={{ marginRight: '10px' }} />
+            Gidalo
+          </Link>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+              <Link to="/" className='nav-link mx-3'>
+                <strong>Home</strong>
+              </Link>
 
-              <LinkContainer to="/" className='mx-3' >
-                <Nav.Link><strong>Home</strong></Nav.Link>
-              </LinkContainer>
-              
-              {/* <NavDropdown title="" id="property-listings-dropdown"> */}
-                
-                  {/* <NavDropdown.Item as={Link} to="/forSale"><strong>For Sale</strong></NavDropdown.Item>
-                
-                <LinkContainer to="/forRent">
-                  <NavDropdown.Item><strong>For Rent</strong></NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/distressSale">
-                  <NavDropdown.Item><strong>Distress Sale</strong></NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/sharedApartment">
-                  <NavDropdown.Item><strong>Shared Apartment</strong></NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/shortLets">
-                  <NavDropdown.Item><strong>Short Lets</strong></NavDropdown.Item>
-                </LinkContainer> */}
-              {/* </NavDropdown> */}
-              {/* <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
+              <NavDropdown title="Property Listings" id="property-listings-dropdown">
+                <Link to="/forSale" className="dropdown-item">
+                  <strong>For Sale</strong>
+                </Link>
+                <Link to="/forRent" className="dropdown-item">
+                  <strong>For Rent</strong>
+                </Link>
+                <Link to="/distressSale" className="dropdown-item">
+                  <strong>Distress Sale</strong>
+                </Link>
+                <Link to="/sharedApartment" className="dropdown-item">
+                  <strong>Shared Apartment</strong>
+                </Link>
+                <Link to="/shortLets" className="dropdown-item">
+                  <strong>Short Lets</strong>
+                </Link>
+              </NavDropdown>
+
+              <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
                 <div className="scrollable-menu">
                   {statesInNigeria.map((state) => (
-                    <LinkContainer key={state} to={`/state/${state}`}>
-                      <NavDropdown.Item>{state}</NavDropdown.Item>
-                    </LinkContainer>
+                    <Link key={state} to={`/state/${state}`} className="dropdown-item">
+                      {state}
+                    </Link>
                   ))}
                 </div>
-              </NavDropdown> */}
-              {/* <LinkContainer to="/dubaiProperties">
-                <Nav.Link><strong>Dubai Properties</strong></Nav.Link>
-              </LinkContainer> */}
-              
+              </NavDropdown>
+
+              <Link to="/dubaiProperties" className='nav-link'>
+                <strong>Dubai Properties</strong>
+              </Link>
             </Nav>
-            
+
             <Nav className="ms-auto">
-            <SearchBox />
+              <SearchBox />
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>
-                      Profile
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/favourites'>
-                    <NavDropdown.Item>
-                      <FaShoppingCart />
-                      mySelectionsCart
-                      {favouriteItems.length > 0 && (
-                        <Badge bg="primary" style={{ marginLeft: '5px' }}>
-                          {favouriteItems.length}
-                        </Badge>
-                      )}
-                    </NavDropdown.Item>
-                  </LinkContainer>
+                  <Link to='/profile' className="dropdown-item">
+                    Profile
+                  </Link>
+                  <Link to='/favourites' className="dropdown-item">
+                    <FaShoppingCart />
+                    mySelectionsCart
+                    {favouriteItems.length > 0 && (
+                      <Badge bg="primary" style={{ marginLeft: '5px' }}>
+                        {favouriteItems.length}
+                      </Badge>
+                    )}
+                  </Link>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                    <FaUser />
-                    Sign In
-                  </Nav.Link>
-                </LinkContainer>
+                <Link to="/login" className='nav-link'>
+                  <FaUser />
+                  Sign In
+                </Link>
               )}
 
               {/* Admin Dropdown */}
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/bookinglist'>
-                    <NavDropdown.Item>Bookings</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/propertylist'>
-                    <NavDropdown.Item>List of Properties</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
+                  <Link to='/admin/bookinglist' className="dropdown-item">
+                    Bookings
+                  </Link>
+                  <Link to='/admin/propertylist' className="dropdown-item">
+                    List of Properties
+                  </Link>
+                  <Link to='/admin/userlist' className="dropdown-item">
+                    Users
+                  </Link>
                 </NavDropdown>
               )}
             </Nav>

@@ -9,10 +9,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: PROPERTIES_URL,
         params: { pageNumber, keyword },
         method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+         credentials: 'include',
+         headers: {
+           'Content-Type': 'application/json',
+         },
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Properties'],
@@ -33,10 +33,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: (propertyId) => ({
         url: `${PROPERTIES_URL}/${propertyId}`,
         method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+         credentials: 'include',
+         headers: {
+           'Content-Type': 'application/json',
+         },
       }),
       keepUnusedDataFor: 5,
       //providesTags: ['Properties'],
@@ -45,10 +45,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `${PROPERTIES_URL}`,
         method: 'POST',
-         credentials: 'include',
-         headers: {
-           'Content-Type': 'application/json',
-         },
+        //  credentials: 'include',
+        //  headers: {
+        //    'Content-Type': 'application/json',
+        //  },
       }),
       invalidatesTags: ['Property'],
     }),
@@ -57,10 +57,10 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: `${PROPERTIES_URL}/${data.propertyId}`,
         method: 'PUT',
         body: data,
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        // credentials: 'include',
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
       }),
       invalidatesTags: ['Properties'],
     }),
@@ -99,11 +99,11 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
     getTopProperties: builder.query({
       query: () => ({
         url: `${PROPERTIES_URL}/top`,
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+         method: 'GET',
+         credentials: 'include',
+         headers: {
+           'Content-Type': 'application/json',
+         },
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Properties'],
