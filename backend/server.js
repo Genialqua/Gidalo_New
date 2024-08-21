@@ -39,11 +39,22 @@ app.use('/api/favourites', favouriteRoutes);
 // Mount upload routes at /api/upload
 app.use('/api/upload', uploadRoutes);
 
-//const __filename = fileURLToPath(import.meta.url);
-//const __dirname = path.dirname(__filename);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+
+// Error handling middleware
+app.use(notFound);
+app.use(errorHandler);
+
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
+
+
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(__filename);
 
 // if (process.env.NODE_ENV === 'production') {
 //   const __dirname = path.resolve();
@@ -59,10 +70,3 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 //     res.send('API is running....');
 //   });
 // }
-
-
-// Error handling middleware
-app.use(notFound);
-app.use(errorHandler);
-
-app.listen(port, () => console.log(`Server is running on port ${port}`));

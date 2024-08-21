@@ -6,7 +6,7 @@ export const USERS_URL = '/api/users';
 export const FAVOURITES_URL = '/api/favourites';
 export const LOGIN_URL = '/api/auth/login';
 export const REGISTER_URL = '/api/auth/register';
-export const UPLOADS_URL = '/api/upload';
+export const UPLOADS_URL = '/api/upload/gcs';
 export const CURRENT_USER_URL = '/api/auth/currentuser';
 
 export const ADD_FAVOURITE_URL = '/api/favourites/add';

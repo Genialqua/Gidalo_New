@@ -107,18 +107,17 @@ const PropertyEditScreen = () => {
   };
 
   const uploadFileHandler = async (e) => {
-    //console.log(e.target.files[0]);
     const formData = new FormData();
-    const file = e.target.files[0];
-    formData.append('images', file);
+    const files = Array.from(e.target.files);
+    files.forEach(file => formData.append('images', file));
 
     try {
       const res = await uploadPropertyImage(formData).unwrap();
       toast.success(res.message);
 
-      const updatedImages = [...images, res.images].flat();
+      const updatedImages = [...images, ...res.images.split(',')];
       setImages(updatedImages);
-    } catch (err){
+    } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -319,8 +318,8 @@ const PropertyEditScreen = () => {
                 type='text'
                 placeholder='Enter image URLs'
                 value={images.join(', ')}
-                onChange={(e) => setImages}
-                //onChange={(e) => setImages(e.target.value.split(', '))}
+                //onChange={(e) => setImages}
+               onChange={(e) => setImages(e.target.value.split(', '))}
               ></Form.Control>
               <Form.Control
                 label='Choose Files'
@@ -330,6 +329,9 @@ const PropertyEditScreen = () => {
               ></Form.Control>
               {loadingUpload && <Loader />}
             </Form.Group>
+            <Button type='submit' variant='primary' className='my-2'>
+              Update
+            </Button>
           </Form>
         )}
       </FormContainer>
@@ -338,6 +340,3 @@ const PropertyEditScreen = () => {
 };
 
 export default PropertyEditScreen;
-
-
-
