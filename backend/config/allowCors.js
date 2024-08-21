@@ -1,7 +1,8 @@
 const allowCors = fn => async (req, res, next) => {
     const allowedOrigins = [
         'https://gidalo-new-frontend.vercel.app',
-        'http://localhost:3000'
+        'http://localhost:3000',
+        'localhost/:1'
     ];
     
     const origin = req.headers.origin;
