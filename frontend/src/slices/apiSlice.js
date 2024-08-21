@@ -11,6 +11,7 @@ const baseQuery = fetchBaseQuery({
     }
     return headers;
   },
+  credentials: 'include',
 });
 
 
@@ -23,6 +24,15 @@ async function baseQueryWithAuth(args, api, extra) {
   return result;
 }
 
+
+export const apiSlice = createApi({
+  baseQuery: baseQueryWithAuth, // Use the customized baseQuery
+  tagTypes: ['Property', 'Favourite', 'User'],
+  endpoints: (builder) => ({}),
+});
+
+
+
 // const baseQueryWithAuth = async (args, api, extra) => {
 //   const result = await baseQuery(args, api, extra);
 //   // Dispatch the logout action on 401 Unauthorized response.
@@ -31,12 +41,6 @@ async function baseQueryWithAuth(args, api, extra) {
 //   }
 //   return result;
 // };
-
-export const apiSlice = createApi({
-  baseQuery: baseQueryWithAuth, // Use the customized baseQuery
-  tagTypes: ['Property', 'Favourite', 'User'],
-  endpoints: (builder) => ({}),
-});
 
 //export const { useGetPropertiesQuery } = apiSlice;
 
