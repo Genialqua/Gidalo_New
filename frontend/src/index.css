@@ -2,6 +2,12 @@ main {
   min-height: 80vh;
 }
 
+@media (max-width: 767px) {
+  .carousel-image {
+    max-height: 200px;
+  }
+}
+
 .rating span {
   margin: 0.1rem;
 }
@@ -14,6 +20,10 @@ main {
   font-size: 0.8rem;
   font-weight: 600;
   padding-left: 0.5rem;
+}
+
+.btn-block {
+  margin-bottom: 10px;
 }
 
 .property-title {
@@ -30,6 +40,7 @@ table th {
 
 .review {
   margin-top: 30px;
+  padding: 15px;
 }
 
 .review h2 {
@@ -50,4 +61,9 @@ table th {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-image {
+  max-height: 300px;
+  object-fit: cover;
 }
