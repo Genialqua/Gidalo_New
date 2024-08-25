@@ -38,9 +38,15 @@ const PropertyScreen = () => {
         propertyId,
         rating,
         comment,
+      }, {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
       }).unwrap();
       refetch();
       toast.success('Review created successfully');
+      setRating(0); // Reset rating after submission
+      setComment(''); // Reset comment after submission
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -153,7 +159,7 @@ const PropertyScreen = () => {
                     />
                   </ListGroup.Item>
                   <ListGroup.Item>Price: {property.price}</ListGroup.Item>
-                  <ListGroup.Item>
+                  <ListGroup.Item className="property-description">
                     <strong>Description</strong>: {property.description}
                   </ListGroup.Item>
                   <ListGroup.Item>
@@ -232,12 +238,12 @@ const PropertyScreen = () => {
                       type="button"
                       onClick={() => {
                         window.open(
-                          'https://calendar.google.com/calendar/appointments/schedules/AcZssZ346v-_Me8d7irQFiJke5Kfy2bVPiDT3FJR2YxUO3zxUksiJ3nTeRwC5TVZL8aAx8yliclFUGRS?gv=true',
+                          'https://calendar.google.com/calendar/appointments/schedules/AcZssZ346v-_Me8d7irQFiJke5Kfy2bVPiDT3Fwd0LJDD7W5nOPjKqJJhcVKoieehNFWbk5NYldEtsp2?gv=true',
                           '_blank'
                         );
                       }}
                     >
-                      Book an Appointment
+                      Book Inspection
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
