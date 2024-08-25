@@ -40,7 +40,8 @@ router.post('/gcs', uploadToGCS.array('images', 10), async (req, res) => {
                     },
                 });
 
-                const publicURL = `https://storage.cloud.google.com/${bucketName}/${uniqueName}`;
+                //const publicURL = `https://storage.cloud.google.com/${bucketName}/${uniqueName}`;
+                const publicURL = `https://storage.googleapis.com/${bucketName}/${uniqueName}`;
                 return publicURL;
             })
         );

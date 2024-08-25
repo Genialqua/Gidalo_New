@@ -67,3 +67,10 @@ table th {
   max-height: 300px;
   object-fit: cover;
 }
+
+.property-description {
+  max-height: 100px; /* Set a maximum height for the description */
+  overflow: hidden;  /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show an ellipsis (...) for overflowed text */
+  white-space: nowrap; /* Prevent text wrapping */
+}

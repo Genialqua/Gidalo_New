@@ -1,7 +1,6 @@
 import { PROPERTIES_URL, UPLOADS_URL } from "../constants.js";
 import { apiSlice } from "./apiSlice";
 
-
 export const propertiesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProperties: builder.query({
@@ -9,10 +8,6 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: PROPERTIES_URL,
         params: { pageNumber, keyword },
         method: 'GET',
-         credentials: 'include',
-         headers: {
-           'Content-Type': 'application/json',
-         },
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Properties'],
@@ -21,10 +16,6 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: (category) => ({
         url: `${PROPERTIES_URL}/category/${category}`,
         method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Properties'],
@@ -33,34 +24,28 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: (propertyId) => ({
         url: `${PROPERTIES_URL}/${propertyId}`,
         method: 'GET',
-         credentials: 'include',
-         headers: {
-           'Content-Type': 'application/json',
-         },
       }),
       keepUnusedDataFor: 5,
-      //providesTags: ['Properties'],
     }),
     createProperty: builder.mutation({
-      query: () => ({
+      query: (data) => ({
         url: `${PROPERTIES_URL}`,
         method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }),
-      invalidatesTags: ['Property'],
+      invalidatesTags: ['Properties'],
     }),
     updateProperty: builder.mutation({
       query: (data) => ({
         url: `${PROPERTIES_URL}/${data.propertyId}`,
         method: 'PUT',
         body: data,
-         credentials: 'include',
-         headers: {
-           'Content-Type': 'application/json',
-         },
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }),
       invalidatesTags: ['Properties'],
     }),
@@ -69,15 +54,12 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: `${UPLOADS_URL}`,
         method: 'POST',
         body: data, // `data` should be an instance of FormData
-        credentials: 'include',
-        
       }),
     }),
     deleteProperty: builder.mutation({
       query: (propertyId) => ({
         url: `${PROPERTIES_URL}/${propertyId}`,
         method: 'DELETE',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -85,13 +67,16 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Properties'],
     }),
     createReview: builder.mutation({
-      query: (data) => ({
-        url: `${PROPERTIES_URL}/${data.propertyId}/reviews`,
+      query: ({ propertyId, rating, comment }) => ({
+        url: `${PROPERTIES_URL}/${propertyId}/reviews`,
         method: 'POST',
-        body: data,
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
+        body: { rating, comment },
+        prepareHeaders: (headers, { getState }) => {
+          const token = getState().auth.userInfo?.token;
+          if (token) {
+            headers.set('Authorization', `Bearer ${token}`);
+          }
+          return headers;
         },
       }),
       invalidatesTags: ['Property'],
@@ -99,11 +84,7 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
     getTopProperties: builder.query({
       query: () => ({
         url: `${PROPERTIES_URL}/top`,
-         method: 'GET',
-         credentials: 'include',
-         headers: {
-           'Content-Type': 'application/json',
-         },
+        method: 'GET',
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Properties'],

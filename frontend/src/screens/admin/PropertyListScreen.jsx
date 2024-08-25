@@ -11,6 +11,7 @@ import {
 } from '../../slices/propertiesApiSlice';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 const PropertyListScreen = () => {
   const { pageNumber } = useParams();
@@ -19,13 +20,20 @@ const PropertyListScreen = () => {
     pageNumber,
   });
 
+  const { userInfo } = useSelector((state) => state.auth);
+
   const [deleteProperty, { isLoading: loadingDelete }] =
     useDeletePropertyMutation();
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this property?')) {
       try {
-        await deleteProperty(id).unwrap();
+        await deleteProperty({
+          id,
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }).unwrap();
         refetch();
         toast.success('Property deleted successfully');
       } catch (err) {
@@ -40,7 +48,11 @@ const PropertyListScreen = () => {
   const createPropertyHandler = async () => {
     if (window.confirm('Are you sure you want to create a new property?')) {
       try {
-        await createProperty().unwrap();
+        await createProperty({
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }).unwrap();
         refetch();
         toast.success('Property created successfully');
       } catch (err) {
@@ -97,7 +109,13 @@ const PropertyListScreen = () => {
                   <td>{property.location}</td>
                   <td>{property.price}</td>
                   <td>{property.category}</td>
-                  <td>{property.description}</td>
+                  <td style={{ 
+                    maxHeight: '100px', 
+                    overflow: 'auto', 
+                    whiteSpace: 'pre-wrap' 
+                  }}>
+                    {property.description}
+                  </td>
                   <td>{property.countInStock}</td>
                   <td>{property.reviews.length}</td>
                   <td>{property.bedrooms}</td>
