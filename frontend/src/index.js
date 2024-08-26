@@ -23,6 +23,7 @@ import ForSaleScreen from './screens/forSale.jsx';
 import DistressSaleScreen from './screens/distressSale.jsx';
 import DubaiPropertiesScreen from './screens/DubaiProperties.jsx';
 import ForRentScreen from './screens/forRent.jsx';
+import LandsScreen from './screens/LandsScreen.jsx';
 import SharedApartmentScreen from './screens/sharedApartment.jsx';
 import ShortLetsScreen from './screens/shortLets.jsx';
 import LoginScreen from './screens/LoginScreen';
@@ -33,6 +34,8 @@ import UserListScreen from './screens/admin/UserListScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import UserEditScreen from './screens/admin/UserEditScreen'
 import ShortletBookingScreen from './screens/ShortletBookingScreen.jsx';
+import WarehouseScreen from './screens/WarehouseScreen.jsx';
+import BoysQuartersScreen from './screens/BoysQuartersScreen.jsx';
 import store from './store';
 import { Provider } from 'react-redux';
 
@@ -55,6 +58,9 @@ const router = createBrowserRouter(
       <Route path="favourites" element={<FavouriteScreen />} />
       <Route path="forsale" element={<ForSaleScreen />} />
       <Route path="distresssale" element={<DistressSaleScreen />} />
+      <Route path="lands" element={<LandsScreen />} />
+      <Route path="boysQuarters" element={<BoysQuartersScreen />} />
+      <Route path="warehouses" element={<WarehouseScreen />} />
       <Route path="dubaiproperties" element={<DubaiPropertiesScreen />} />
       <Route path="forRent" element={<ForRentScreen />} />
       <Route path="sharedapartment" element={<SharedApartmentScreen />} />

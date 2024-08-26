@@ -8,12 +8,12 @@ import Paginate from '../components/Paginate';
 import PropertyCarousel from '../components/PropertyCarousel.jsx';
 import Meta from '../components/Meta';
 
-const ShortLetsScreen = () => {
+const BoysQuartersScreen = () => {
   const { pageNumber = 1, keyword = '' } = useParams(); // Extract parameters from URL
 
   // Fetch properties by category with keyword and pagination
   const { data, isLoading, error } = useGetPropertiesByCategoryQuery({ 
-    category: 'short lets',
+    category: 'boys quarters',
     keyword, 
     pageNumber,
   });
@@ -37,7 +37,7 @@ const ShortLetsScreen = () => {
       ) : (
         <>
           <Meta />
-          <h1>Short Lets Properties</h1>
+          <h1>Boys Quarters For Rent</h1>
           <Row>
             {data?.properties?.length > 0 ? (
               data.properties.map((property) => (
@@ -49,7 +49,7 @@ const ShortLetsScreen = () => {
               ))
             ) : (
               <Message variant='info'>
-                No properties found for short lets.
+                No boys quarters found for rent.
               </Message>
             )}
           </Row>
@@ -64,4 +64,4 @@ const ShortLetsScreen = () => {
   );
 };
 
-export default ShortLetsScreen;
+export default BoysQuartersScreen;

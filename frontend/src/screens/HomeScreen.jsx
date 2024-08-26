@@ -28,8 +28,11 @@ const HomeScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
+        // <Message variant='danger'>
+        //   {error?.data?.message || error.error}
+        // </Message>
         <Message variant='danger'>
-          {error?.data?.message || error.error}
+          Error loading properties. Please check your internet connection
         </Message>
       ) : (
         <>

@@ -8,7 +8,10 @@ const PropertyCarousel = () => {
   const { data: properties, isLoading, error } = useGetTopPropertiesQuery();
 
   return isLoading ? <Loader /> : error ? (
-    <Message variant='danger'>{error?.data?.message || error.error}</Message>
+    //<Message variant='danger'>{error?.data?.message || error.error}</Message>
+    <Message variant='danger'>
+      Error loading Top properties. Please check your internet connection
+    </Message>
   ) : (
     <Carousel pause='hover' className='bg-primary mb-4'>
       {properties.map((property) => (

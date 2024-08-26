@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Col } from 'react-bootstrap';
 import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -29,6 +29,16 @@ const UserListScreen = () => {
   return (
     <>
       <h1>Users</h1>
+      <Col className='text-end'>
+          <Button className='my-3' onClick={refetch}>
+            Refresh
+          </Button>
+        </Col>
+        <Col>
+          <Link className="btn btn-light my-3" to={'/'}>
+            Go Back
+          </Link>
+        </Col>
       {isLoading ? (
         <Loader />
       ) : error ? (

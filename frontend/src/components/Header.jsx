@@ -32,7 +32,7 @@ const Header = () => {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   return (
     <header>
@@ -46,9 +46,9 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/" className='nav-link mx-3'>
+              {/* <Link to="/" className='nav-link mx-3'>
                 <strong>Home</strong>
-              </Link>
+              </Link> */}
 
               <NavDropdown title="Property Listings" id="property-listings-dropdown">
                 <Link to="/forSale" className="dropdown-item">
@@ -58,13 +58,22 @@ const Header = () => {
                   <strong>For Rent</strong>
                 </Link>
                 <Link to="/distressSale" className="dropdown-item">
-                  <strong>Distress Sale</strong>
+                  <strong>Distress Sales</strong>
                 </Link>
                 <Link to="/sharedApartment" className="dropdown-item">
-                  <strong>Shared Apartment</strong>
+                  <strong>Shared Apartments</strong>
                 </Link>
                 <Link to="/shortLets" className="dropdown-item">
                   <strong>Short Lets</strong>
+                </Link>
+                <Link to="/lands" className="dropdown-item">
+                  <strong>Lands</strong>
+                </Link>
+                <Link to="/boysquarters" className="dropdown-item">
+                  <strong>Boys Quarters</strong>
+                </Link>
+                <Link to="/warehouses" className="dropdown-item">
+                  <strong>Warehouses</strong>
                 </Link>
               </NavDropdown>
 
@@ -81,52 +90,59 @@ const Header = () => {
               <Link to="/dubaiProperties" className='nav-link'>
                 <strong>Dubai Properties</strong>
               </Link>
+
             </Nav>
 
             <Nav className="ms-auto">
               <SearchBox />
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
-                  <Link to='/profile' className="dropdown-item">
-                    Profile
-                  </Link>
-                  <Link to='/favourites' className="dropdown-item">
-                    <FaShoppingCart />
-                    mySelectionsCart
-                    {favouriteItems.length > 0 && (
-                      <Badge bg="primary" style={{ marginLeft: '5px' }}>
-                        {favouriteItems.length}
-                      </Badge>
-                    )}
-                  </Link>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <>
+                  <NavDropdown title={userInfo.name} id='username'>
+                    <Link to='/profile' className="dropdown-item">
+                      Profile
+                    </Link>
+                    <Link to='/favourites' className="dropdown-item">
+                      <FaShoppingCart />
+                      My Selections
+                      {favouriteItems.length > 0 && (
+                        <Badge bg="primary" style={{ marginLeft: '5px' }}>
+                          {favouriteItems.length}
+                        </Badge>
+                      )}
+                    </Link>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+
+                  {userInfo.isAdmin && (
+                    <NavDropdown title='Admin' id='adminmenu'>
+                      <Link to='/admin/bookinglist' className="dropdown-item">
+                        Bookings
+                      </Link>
+                      <Link to='/admin/propertylist' className="dropdown-item">
+                        List of Properties
+                      </Link>
+                      <Link to='/admin/userlist' className="dropdown-item">
+                        Users
+                      </Link>
+                    </NavDropdown>
+                  )}
+                </>
               ) : (
                 <Link to="/login" className='nav-link'>
                   <FaUser />
                   Sign In
                 </Link>
               )}
-
-              {/* Admin Dropdown */}
-              {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <Link to='/admin/bookinglist' className="dropdown-item">
-                    Bookings
-                  </Link>
-                  <Link to='/admin/propertylist' className="dropdown-item">
-                    List of Properties
-                  </Link>
-                  <Link to='/admin/userlist' className="dropdown-item">
-                    Users
-                  </Link>
-                </NavDropdown>
-              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
+        <Nav>
+              <Link to="/homemovers" className='nav-link mx-3'>
+                <strong>Home Movers</strong>
+              </Link>
+            </Nav>
       </Navbar>
     </header>
   );
