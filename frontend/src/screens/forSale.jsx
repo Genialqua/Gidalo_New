@@ -1,30 +1,63 @@
 import { Row, Col } from 'react-bootstrap';
+import { useParams, Link } from 'react-router-dom';
+import { useGetPropertiesByCategoryQuery } from '../slices/propertiesApiSlice.js';
 import Property from '../components/property.jsx';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
-import { useGetPropertiesQuery } from '../slices/propertiesApiSlice.js';
+import Paginate from '../components/Paginate';
+import PropertyCarousel from '../components/PropertyCarousel.jsx';
+import Meta from '../components/Meta';
 
 const ForSaleScreen = () => {
-  const { data: properties, isLoading, error } = useGetPropertiesQuery();
+  const { pageNumber = 1, keyword = '' } = useParams(); // Extract parameters from URL
+
+  // Fetch properties by category with keyword and pagination
+  const { data, isLoading, error } = useGetPropertiesByCategoryQuery({ 
+    category: 'for sale',
+    keyword, 
+    pageNumber,
+  });
 
   return (
     <>
+      {!keyword && <PropertyCarousel />}
+      
+      {keyword && (
+        <Link to='/' className='btn btn-light mb-4'>
+          Go Back
+        </Link>
+      )}
+      
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error?.message || error.error}</Message>
+        <Message variant='danger'>
+          {error?.data?.message || 'Error loading properties. Please check your internet connection'}
+        </Message>
       ) : (
         <>
-          <h1>Properties Sale</h1>
+          <Meta />
+          <h1>Properties For Sale</h1>
           <Row>
-            {properties
-              .filter((property) => property.category.toLowerCase() === 'for sale')
-              .map((property) => (
+            {data?.properties?.length > 0 ? (
+              data.properties.map((property) => (
                 <Col key={property._id} sm={12} md={6} lg={4} xl={3}>
-                  <Property property={property} />
+                  <Link to={`/property/${property._id}`}>
+                    <Property property={property} />
+                  </Link>
                 </Col>
-              ))}
+              ))
+            ) : (
+              <Message variant='info'>
+                No properties found for sale.
+              </Message>
+            )}
           </Row>
+          <Paginate 
+            pages={data.pages} 
+            page={data.page} 
+            keyword={keyword} 
+          />
         </>
       )}
     </>

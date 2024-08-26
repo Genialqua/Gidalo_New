@@ -13,8 +13,9 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Properties'],
     }),
     getPropertiesByCategory: builder.query({
-      query: (category) => ({
+      query: ({ category, pageNumber = 1, keyword = '' }) => ({
         url: `${PROPERTIES_URL}/category/${category}`,
+        params: { pageNumber, keyword },
         method: 'GET',
       }),
       keepUnusedDataFor: 5,
@@ -71,7 +72,7 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
         url: `${PROPERTIES_URL}/${propertyId}/reviews`,
         method: 'POST',
         body: { rating, comment },
-        prepareHeaders: (headers, { getState }) => {
+        headers: (headers, { getState }) => {
           const token = getState().auth.userInfo?.token;
           if (token) {
             headers.set('Authorization', `Bearer ${token}`);

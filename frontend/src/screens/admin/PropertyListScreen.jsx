@@ -68,6 +68,16 @@ const PropertyListScreen = () => {
           <h1>Properties</h1>
         </Col>
         <Col className='text-end'>
+          <Button className='my-3' onClick={refetch}>
+            Refresh
+          </Button>
+        </Col>
+        <Col>
+          <Link className="btn btn-light my-3" to={'/'}>
+            Go Back
+          </Link>
+        </Col>
+        <Col className='text-end'>
           <Button className='my-3' onClick={createPropertyHandler}>
             <FaPlus /> Create New Property
           </Button>
@@ -79,7 +89,8 @@ const PropertyListScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error.data.message}</Message>
+        // <Message variant='danger'>{error.data.message}</Message>
+        <Message variant='danger'>Error loading properties. Please check your internet connection</Message>
       ) : (
         <>
           <Table striped hover responsive className='table-sm'>
