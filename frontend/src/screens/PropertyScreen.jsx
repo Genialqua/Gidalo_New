@@ -9,7 +9,6 @@ import { useGetPropertyDetailsQuery, useCreateReviewMutation } from "../slices/p
 import { addToFavourites } from "../slices/favouritesSlice.js";
 import { useDispatch, useSelector } from 'react-redux';
 import Meta from '../components/Meta';
-import '../index.css'; // Import the custom CSS file
 
 const PropertyScreen = () => {
   const dispatch = useDispatch();
@@ -38,10 +37,6 @@ const PropertyScreen = () => {
         propertyId,
         rating,
         comment,
-      }, {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
       }).unwrap();
       refetch();
       toast.success('Review created successfully');
@@ -159,7 +154,13 @@ const PropertyScreen = () => {
                     />
                   </ListGroup.Item>
                   <ListGroup.Item>Price: {property.price}</ListGroup.Item>
-                  <ListGroup.Item className="property-description">
+                  <ListGroup.Item style={{
+                    maxHeight: '150px',
+                    overflowY: 'auto',
+                    padding: '10px',
+                    border: '1px solid #ddd',
+                    backgroundColor: '#f8f9fa'
+                  }}>
                     <strong>Description</strong>: {property.description}
                   </ListGroup.Item>
                   <ListGroup.Item>
@@ -236,14 +237,9 @@ const PropertyScreen = () => {
                     <Button
                       className="btn-block w-100"
                       type="button"
-                      onClick={() => {
-                        window.open(
-                          'https://calendar.google.com/calendar/appointments/schedules/AcZssZ346v-_Me8d7irQFiJke5Kfy2bVPiDT3Fwd0LJDD7W5nOPjKqJJhcVKoieehNFWbk5NYldEtsp2?gv=true',
-                          '_blank'
-                        );
-                      }}
+                      onClick={() => window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ346v-_Me8d7irQFiJke5Kfy2bVPiDT3FJR2YxUO3zxUksiJ3nTeRwC5TVZL8aAx8yliclFUGRS?gv=true', '_blank')}
                     >
-                      Book Inspection
+                      Book an Appointment
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>

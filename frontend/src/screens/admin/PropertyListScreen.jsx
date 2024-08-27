@@ -120,10 +120,19 @@ const PropertyListScreen = () => {
                   <td>{property.location}</td>
                   <td>{property.price}</td>
                   <td>{property.category}</td>
-                  <td style={{ 
+                  {/* <td style={{ 
                     maxHeight: '100px', 
                     overflow: 'auto', 
                     whiteSpace: 'pre-wrap' 
+                  }}>
+                    {property.description}
+                  </td> */}
+                  <td style={{
+                    maxHeight: '100px',
+                    overflowY: 'auto',
+                    padding: '10px',
+                    border: '1px solid #ddd',
+                    //backgroundColor: '#f8f9fa'
                   }}>
                     {property.description}
                   </td>
