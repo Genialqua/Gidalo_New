@@ -1,6 +1,6 @@
 
-export const BASE_URL = 'https://gidalo-new-backend.vercel.app';
-//export const BASE_URL = '';
+//export const BASE_URL = 'https://gidalo-new-backend.vercel.app';
+export const BASE_URL = '';
 export const PROPERTIES_URL = '/api/properties';
 export const USERS_URL = '/api/users';
 export const FAVOURITES_URL = '/api/favourites';
