@@ -49,7 +49,7 @@ const HomeMoversScreen = () => {
               ))
             ) : (
               <Message variant='info'>
-                No Home mover is currently available.
+                No Home mover is currently available for hire.
               </Message>
             )}
           </Row>
