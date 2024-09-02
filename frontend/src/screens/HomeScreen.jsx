@@ -16,8 +16,16 @@ const HomeScreen = () => {
     pageNumber,
   });
 
+  const canonicalUrl = `https://www.gidalo.com${keyword ? `/search/${keyword}/page/${pageNumber}` : ''}`;
+
   return (
     <>
+      <Meta 
+        title="Properties List - Gidalo" 
+        description="Find the best properties that fit your budget." 
+        keywords="properties, buy properties, real estate, apartments, flats, duplex, bedrooms" 
+        canonical={canonicalUrl}
+      />
       {!keyword ? (
         <PropertyCarousel />
       ) : (
@@ -28,15 +36,11 @@ const HomeScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        // <Message variant='danger'>
-        //   {error?.data?.message || error.error}
-        // </Message>
         <Message variant='danger'>
           Error loading properties. Please check your internet connection
         </Message>
       ) : (
         <>
-          <Meta />
           <h1>Properties List</h1>
           <Row>
             {data.properties.map((property) => (
@@ -47,7 +51,7 @@ const HomeScreen = () => {
               </Col>
             ))}
           </Row>
-           <Paginate 
+          <Paginate 
             pages={data.pages} 
             page={data.page} 
             keyword={keyword} 

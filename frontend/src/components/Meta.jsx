@@ -1,17 +1,65 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
-const Meta = ({
-  title = 'Gidalo',
-  description = 'We provide you with a unique set of real estate deals',
-  keywords = 'real-estate, properties, apartments, flats, duplex, bedrooms',
+const Meta = ({ 
+  title = 'Gidalo', 
+  description = 'We showcase the best properties within your budget.', 
+  keywords = 'properties, buy properties, real estate, apartments, flats, duplex, bedrooms', 
+  canonical 
 }) => {
   return (
     <Helmet>
       <title>{title}</title>
       <meta name='description' content={description} />
-      <meta name='keyword' content={keywords} />
+      <meta name='keywords' content={keywords} />
+      {canonical && <link rel="canonical" href={canonical} />}
     </Helmet>
   );
 };
 
 export default Meta;
+
+
+
+
+
+// import { Helmet } from 'react-helmet';
+
+// const Meta = ({ title, description, keywords, canonical }) => {
+//   return (
+//     <Helmet>
+//       <title>{title}</title>
+//       <meta name='description' content={description} />
+//       <meta name='keywords' content={keywords} />
+//       {canonical && <link rel="canonical" href={canonical} />}
+//     </Helmet>
+//   );
+// };
+
+// Meta.defaultProps = {
+//   title: 'Gidalo',
+//   description: 'We showcase the best properties within your budget.',
+//   keywords: 'properties, buy properties, real estate, properties, apartments, flats, duplex, bedrooms',
+// };
+
+// export default Meta;
+
+
+
+
+// import { Helmet } from 'react-helmet-async';
+
+// const Meta = ({
+//   title = 'Gidalo',
+//   description = 'We provide you with a unique set of real estate deals',
+//   keywords = 'real-estate, properties, apartments, flats, duplex, bedrooms',
+// }) => {
+//   return (
+//     <Helmet>
+//       <title>{title}</title>
+//       <meta name='description' content={description} />
+//       <meta name='keyword' content={keywords} />
+//     </Helmet>
+//   );
+// };
+
+// export default Meta;
