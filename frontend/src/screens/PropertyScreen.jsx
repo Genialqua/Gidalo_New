@@ -49,9 +49,14 @@ const PropertyScreen = () => {
 
   return (
     <>
+      
+      <header>
       <Link className="btn btn-light my-3" to={'/'}>
         Go Back
       </Link>
+      </header>
+
+      <main>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -60,7 +65,9 @@ const PropertyScreen = () => {
         </Message>
       ) : (
         <>
-          <Meta title={property.title} description={property.description} />
+        <Meta title={`${property.title} - Property Details`} description={`Find detailed information about ${property.title}, including price, location, and amenities. Read user reviews and book an appointment today.`} />
+          <section aria-labelledby="property-details">
+          <h1 id="property-details" className="sr-only">{property.title}</h1>
           <Row>
             <Col xs={12} md={6} lg={5}>
               <Carousel interval={null}>
@@ -69,7 +76,8 @@ const PropertyScreen = () => {
                     <img
                       className="d-block w-100 carousel-image"
                       src={image}
-                      alt={`Slide ${index + 1}`}
+                      alt={`Slide ${index + 1} showing ${property.title}`}
+                      loading='lazy'
                     />
                   </Carousel.Item>
                 ))}
@@ -239,15 +247,17 @@ const PropertyScreen = () => {
                       type="button"
                       onClick={() => window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ346v-_Me8d7irQFiJke5Kfy2bVPiDT3FJR2YxUO3zxUksiJ3nTeRwC5TVZL8aAx8yliclFUGRS?gv=true', '_blank')}
                     >
-                      Book an Appointment
+                      Book a Visit
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
           </Row>
+        </section>
         </>
       )}
+      </main>
     </>
   );
 };

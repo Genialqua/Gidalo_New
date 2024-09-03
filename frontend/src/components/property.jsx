@@ -13,10 +13,15 @@ const Property = ({ property, onBook }) => {
     <>
       <Card className="my-3 p-3 rounded">
         <Link to={`/property/${property._id}`}>
-          <Carousel>
+          <Carousel interval={null}>
             {property.images.map((image, index) => (
               <Carousel.Item key={index}>
-                <Card.Img src={image} variant="top" />
+                <Card.Img 
+                className='d-block w-100 carousel-image' 
+                src={image}
+                alt={`Slide ${index + 1} showing ${property.title}`}
+                loading="lazy" 
+                variant="top" />
               </Carousel.Item>
             ))}
           </Carousel>

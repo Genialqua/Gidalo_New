@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 const Meta = ({ 
   title = 'Gidalo', 
   description = 'We showcase the best properties within your budget.', 
-  keywords = 'properties, buy properties, real estate, apartments, flats, duplex, bedrooms', 
+  keywords = 'properties, shared apartments available, properties for sale in lagos, real estate websites in Nigeria, properties for rent in lagos, shortlets properties in lagos, apartments for sale in lekki, flats for sale in lagos, duplex for sale in lekki, duplex for rent in lekki', 
   canonical 
 }) => {
   return (
