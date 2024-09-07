@@ -1,3 +1,14 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /favorite/
+
+
+# Allow specific files or folders that are important for SEO
+Allow: /wp-content/uploads/
+Allow: /blog/
+
+# Sitemap location for better indexing
+Sitemap: https://www.gidalo.com/sitemap.xml
