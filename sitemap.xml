@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.gidalo.com/</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Property Listings -->
+  <url>
+    <loc>https://www.gidalo.com/properties</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Individual Property Pages (Example) -->
+  <url>
+    <loc>https://www.gidalo.com/properties/property-1</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.gidalo.com/properties/property-2</loc>
+    <lastmod>2024-09-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- For Sale Page -->
+  <url>
+    <loc>https://www.gidalo.com/forSale</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Rent Page -->
+  <url>
+    <loc>https://www.gidalo.com/forRent</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Distress Sales Page -->
+  <url>
+    <loc>https://www.gidalo.com/distressSale</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Shared Apartment Page -->
+  <url>
+    <loc>https://www.gidalo.com/sharedApartment</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Short Lets Page -->
+  <url>
+    <loc>https://www.gidalo.com/shortLets</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Lands Page -->
+  <url>
+    <loc>https://www.gidalo.com/lands</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Boys Quarter Page -->
+  <url>
+    <loc>https://www.gidalo.com/boysquarters</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Warehouses Page -->
+  <url>
+    <loc>https://www.gidalo.com/warehouses</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Dubai Properties Page -->
+  <url>
+    <loc>https://www.gidalo.com/dubaiProperties</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Home Movers Page -->
+  <url>
+    <loc>https://www.gidalo.com/homemovers</loc>
+    <lastmod>2024-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+</urlset>
