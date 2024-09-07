@@ -1,9 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Disallow: /cgi-bin/
+Disallow: /cgi-sys/suspendedpage.cgi
 Disallow: /admin/
 Disallow: /login/
 Disallow: /register/
-Disallow: /favorite/
+Disallow: /favourite/
 
 
 # Allow specific files or folders that are important for SEO
