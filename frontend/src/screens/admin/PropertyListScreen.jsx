@@ -35,8 +35,9 @@ const PropertyListScreen = () => {
         //     Authorization: `Bearer ${userInfo.token}`,
         //   },
         // }).unwrap();
-        toast.success('Property deleted successfully');
+        
         refetch();
+        toast.success('Property deleted successfully');
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -54,8 +55,9 @@ const PropertyListScreen = () => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         }).unwrap();
-        toast.success('Property created successfully');
+        
         refetch();
+        toast.success('Property created successfully');
         
       } catch (err) {
         toast.error(err?.data?.message || err.error);
