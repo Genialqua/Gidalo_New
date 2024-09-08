@@ -13,14 +13,14 @@
     <lastmod>2024-09-11</lastmod>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Individual Property Pages (Example) -->
+
+  <!-- Individual Property Pages -->
   <url>
     <loc>https://www.gidalo.com/properties/property-1</loc>
     <lastmod>2024-09-10</lastmod>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://www.gidalo.com/properties/property-2</loc>
     <lastmod>2024-09-09</lastmod>
@@ -33,7 +33,7 @@
     <lastmod>2024-09-11</lastmod>
     <priority>0.5</priority>
   </url>
-  
+
   <!-- Rent Page -->
   <url>
     <loc>https://www.gidalo.com/forRent</loc>
