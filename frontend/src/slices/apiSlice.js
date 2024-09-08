@@ -6,11 +6,13 @@ const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.userInfo?.token;
-    console.log(token);
+    
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }
+    console.log(headers);
     return headers;
+
   },
   credentials: 'include',
 });
@@ -18,6 +20,7 @@ const baseQuery = fetchBaseQuery({
 
 async function baseQueryWithAuth(args, api, extra) {
   const result = await baseQuery(args, api, extra);
+  console.log(result);
   // Dispatch the logout action on 401.
   if (result.error && result.error.status === 401) {
     api.dispatch(logout());
