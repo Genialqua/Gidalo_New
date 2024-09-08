@@ -7,7 +7,8 @@ const protect = asyncHandler(async(req, res, next) => {
     let token;
     
     // Read the JWT token from the cookie
-    token = req.cookies.jwt;
+    //token = req.cookies.jwt;
+    token = req.cookies.jwt || req.headers.Authorization.startsWith("Bearer ").split(' ')[1];
 
     if (token) {
         try {
