@@ -61,11 +61,11 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       query: (propertyId) => ({
         url: `${PROPERTIES_URL}/${propertyId}`,
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
       }),
-      invalidatesTags: ['Properties'],
+      //invalidatesTags: ['Properties'],
     }),
     createReview: builder.mutation({
       query: ({ propertyId, rating, comment }) => ({

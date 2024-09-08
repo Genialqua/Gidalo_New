@@ -10,6 +10,7 @@ import { addToFavourites } from "../slices/favouritesSlice.js";
 import { useDispatch, useSelector } from 'react-redux';
 import Meta from '../components/Meta';
 
+
 const PropertyScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
