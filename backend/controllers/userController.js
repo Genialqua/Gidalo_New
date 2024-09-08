@@ -21,6 +21,7 @@ const authUser = asyncHandler(async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         
+        
     });
   } else {
     res.status(401);
