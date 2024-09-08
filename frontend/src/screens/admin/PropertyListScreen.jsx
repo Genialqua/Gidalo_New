@@ -28,14 +28,15 @@ const PropertyListScreen = () => {
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this property?')) {
       try {
-        await deleteProperty({
-          id,
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }).unwrap();
-        refetch();
+        await deleteProperty(id);
+        // await deleteProperty({
+        //   id,
+        //   headers: {
+        //     Authorization: `Bearer ${userInfo.token}`,
+        //   },
+        // }).unwrap();
         toast.success('Property deleted successfully');
+        refetch();
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -53,8 +54,9 @@ const PropertyListScreen = () => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         }).unwrap();
-        refetch();
         toast.success('Property created successfully');
+        refetch();
+        
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

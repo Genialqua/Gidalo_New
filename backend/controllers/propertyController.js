@@ -136,7 +136,7 @@ const deleteproperty = asyncHandler(async (req, res) => {
 
   if (property) {
     await Property.deleteOne({ _id: property._id });
-    res.json({ message: 'Property removed' });
+    res.status(200).json({ message: 'Property removed' });
   } else {
     res.status(404);
     throw new Error('Property not found');

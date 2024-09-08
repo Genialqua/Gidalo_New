@@ -17,7 +17,10 @@ router.route('/category/:category').get(getProperties);
 router.route('/:id/reviews').post(protect, checkObjectId, createPropertyReview);
 router.get('/top', getTopProperties);
 
-router.route('/:id').get(getPropertyById).put(protect, admin, checkObjectId, updateProperty)
-.delete(protect, admin, checkObjectId, deleteproperty);
+router
+  .route('/:id')
+  .get(getPropertyById)
+  .put(protect, admin, checkObjectId, updateProperty)
+  .delete(protect, admin, checkObjectId, deleteproperty);
 
 export default router;
