@@ -30,6 +30,7 @@ const protect = asyncHandler(async(req, res, next) => {
 
 // Grant access to admin routes
 const admin = (req, res, next) => {
+    
     if (req.user && req.user.isAdmin) {
         next();
     } else {

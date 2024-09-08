@@ -74,7 +74,7 @@ const createProperty = asyncHandler(async (req, res) => {
     nearbyHospitals: 'Hospital name here',
     nearbySupermarkets: 'Supermarket name here',
   });
-
+console.log(req);
   const createdProperty = await property.save();
   res.status(201).json(createdProperty);
 });
