@@ -1,6 +1,7 @@
 import { Card, Button, Carousel } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Rating from './Rating';
+import '../index.css';
 
 const Property = ({ property, onBook }) => {
   const navigate = useNavigate();
@@ -15,13 +16,32 @@ const Property = ({ property, onBook }) => {
         <Link to={`/property/${property._id}`}>
           <Carousel interval={null}>
             {property.images.map((image, index) => (
-              <Carousel.Item key={index}>
-                <Card.Img 
-                className='d-block w-100 carousel-image' 
-                src={image}
-                alt={`Slide ${index + 1} showing ${property.title}`}
-                loading="lazy" 
-                variant="top" />
+              <Carousel.Item key={index} className="carousel-item-container">
+                <div className="image-container">
+                  <Card.Img 
+                    className='d-block w-100 carousel-image' 
+                    src={image}
+                    alt={`Slide ${index + 1} showing ${property.title}`}
+                    loading="lazy" 
+                    variant="top" 
+                  />
+                  <div 
+                  className="watermark" 
+                  style={{
+                    position: 'center',
+                    bottom: '10px',
+                    right: '10px',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    color: 'white',
+                    padding: '5px 10px',
+                    fontSize: '12px',
+                    borderRadius: '5px',
+                    zIndex: 10,
+                    }}
+                    >
+                    Gidalo
+                  </div>
+                </div>
               </Carousel.Item>
             ))}
           </Carousel>
@@ -31,8 +51,13 @@ const Property = ({ property, onBook }) => {
           <Link to={`/property/${property._id}`}>
             <Card.Title as="div" className="property-title">
               <strong>{property.title}</strong>
+            
             </Card.Title>
           </Link>
+
+          <Card.Text>
+          {property.location}
+          </Card.Text>
 
           <Card.Text as="div">
             <Rating value={property.rating} text={`${property.numReviews} reviews`} />
@@ -52,6 +77,7 @@ const Property = ({ property, onBook }) => {
 };
 
 export default Property;
+
 
 
 

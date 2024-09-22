@@ -82,6 +82,14 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Property'],
     }),
+    getPropertiesByUser: builder.query({
+      query: (userId) => ({
+        url: `/api/properties/user/${userId}`,
+        method: 'GET',
+      }),
+      providesTags: ['Properties'],
+    }),
+    
     getTopProperties: builder.query({
       query: () => ({
         url: `${PROPERTIES_URL}/top`,
@@ -95,6 +103,7 @@ export const propertiesApiSlice = apiSlice.injectEndpoints({
 
 export const { 
   useGetPropertiesQuery,
+  useGetPropertiesByUserQuery,
   useGetPropertiesByCategoryQuery,
   useGetPropertyDetailsQuery,
   useCreatePropertyMutation,
