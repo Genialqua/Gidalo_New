@@ -14,6 +14,7 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isAgent, setIsAgent] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const RegisterScreen = () => {
       toast.error('Passwords do not match');
     } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
+        const res = await register({ name, email, password, isAgent }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
@@ -89,6 +90,15 @@ const RegisterScreen = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className='my-2' controlId='isAgent'>
+          <Form.Check 
+            type='checkbox' 
+            label='Register as an Agent' 
+            checked={isAgent} 
+            onChange={(e) => setIsAgent(e.target.checked)} 
+          />
         </Form.Group>
 
         <Button disabled={isLoading} type='submit' variant='primary'>

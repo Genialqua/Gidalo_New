@@ -80,6 +80,9 @@ const PropertyScreen = () => {
                       alt={`Slide ${index + 1} showing ${property.title}`}
                       loading='lazy'
                     />
+                    <div className="watermark">
+                    Gidalo
+                  </div>
                   </Carousel.Item>
                 ))}
               </Carousel>

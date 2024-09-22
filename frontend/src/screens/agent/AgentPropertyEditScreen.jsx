@@ -12,7 +12,7 @@ import {
 } from '../../slices/propertiesApiSlice';
 import {states, categories} from '../../utils/constants';
 
-const PropertyEditScreen = () => {
+const AgentPropertyEditScreen = () => {
   const { id: propertyId } = useParams();
   const navigate = useNavigate();
 
@@ -101,7 +101,7 @@ const PropertyEditScreen = () => {
       await updateProperty(updatedProperty).unwrap();
       toast.success('Property updated successfully');
       refetch();
-      navigate('/admin/propertylist');
+      navigate('/agent/propertylist');
     } catch (error) {
       toast.error(error?.data?.message || 'An error occurred');
     }
@@ -125,7 +125,7 @@ const PropertyEditScreen = () => {
 
   return (
     <>
-      <Link to='/admin/propertylist' className='btn btn-light my-3'>
+      <Link to='/agent/propertylist' className='btn btn-light my-3'>
         Go Back
       </Link>
 
@@ -352,4 +352,4 @@ const PropertyEditScreen = () => {
   );
 };
 
-export default PropertyEditScreen;
+export default AgentPropertyEditScreen;

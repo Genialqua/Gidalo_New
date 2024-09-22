@@ -75,6 +75,9 @@ const Header = () => {
                 <Link to="/warehouses" className="dropdown-item">
                   <strong>Warehouses</strong>
                 </Link>
+                <Link to="/dubaiProperties" className='dropdown-item'>
+                <strong>Dubai Properties</strong>
+              </Link>
               </NavDropdown>
 
               <NavDropdown title="Select State" id="state-dropdown" className="scrollable-dropdown">
@@ -86,10 +89,6 @@ const Header = () => {
                   ))}
                 </div>
               </NavDropdown>
-
-              <Link to="/dubaiProperties" className='nav-link'>
-                <strong>Dubai Properties</strong>
-              </Link>
 
             </Nav>
 
@@ -128,6 +127,16 @@ const Header = () => {
                       </Link>
                     </NavDropdown>
                   )}
+
+                  {userInfo.isAgent && (
+                    <NavDropdown title='Agent' id='agentmenu'>
+                      
+                      <Link to='/agent/propertylist' className="dropdown-item">
+                        List of Properties
+                      </Link>
+                    </NavDropdown>
+                  )}
+
                 </>
               ) : (
                 <Link to="/login" className='nav-link'>

@@ -23,7 +23,7 @@ export const favouriteApiSlice = apiSlice.injectEndpoints({
         url: `${FAVOURITES_URL}/mine`,
       }),
       keepUnusedDataFor: 5, // Cache duration in seconds
-      //providesTags: ['Favourite'],
+      providesTags: ['Favourite'],
     }),
     getFavourites: builder.query({
       query: () => ({
@@ -31,6 +31,13 @@ export const favouriteApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5, // Cache duration in seconds
       providesTags: ['Favourite'],
+    }),
+    removeFavourite: builder.mutation({
+      query: (id) => ({
+        url: `${FAVOURITES_URL}/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Favourite'], // Invalidate Favourite tag to refresh data
     }),
   }),
 });
@@ -40,4 +47,5 @@ export const {
   useGetFavouriteDetailsQuery,
   useGetMyFavouritesQuery,
   useGetFavouritesQuery,
+  useRemoveFavouriteMutation,
 } = favouriteApiSlice;

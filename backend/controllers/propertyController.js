@@ -5,7 +5,7 @@ import Property from '../models/propertyModel.js';
 // @route   GET /api/Properties
 // @access  Public
 const getProperties = asyncHandler(async (req, res) => {
-  const pageSize = 4; // Set a default value for pagination
+  const pageSize = 15; // Set a default value for pagination
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
@@ -45,6 +45,21 @@ const getPropertyById = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error('Property not found');
+  }
+});
+
+// @desc    Fetch properties created by a specific user
+// @route   GET /api/properties/user/:userId
+// @access  Public
+const getPropertiesByUser = asyncHandler(async (req, res) => {
+  const userId = req.params.userId;
+  const properties = await Property.find({ user: userId });
+
+  if (properties) {
+    res.json(properties);
+  } else {
+    res.status(404);
+    throw new Error('Properties not found for this user');
   }
 });
 
@@ -201,4 +216,5 @@ export {
    deleteproperty,
    createPropertyReview,
    getTopProperties,
+   getPropertiesByUser,
 };
