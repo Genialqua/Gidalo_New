@@ -11,7 +11,7 @@ import {
     updateUser,
     getUserById
     } from '../controllers/userController.js';
-import { protect, admin, agent } from '../middleware/authMiddleware.js'
+import { protect, admin, agent} from '../middleware/authMiddleware.js'
 
 const router = express.Router();
 
