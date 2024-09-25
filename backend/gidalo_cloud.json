@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "gidalo",
+    "private_key_id": "187a1176b598988fb24a862d429ae35182a828ee",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDXcDOCd3I8XpXe\nBZFcK26TroQAsbdLzHsrHd2otRBYVBnAz1eo0CHK8vYspwWF6JTe3al10FCKY1MC\nvrmQUyndWM3ozzefgmXQ8TzQJJRzm0vXwq09MWDU48c6QAE3+9Hx6hOZFaIMQzvs\nraSz5EmPrqrtGsyRIXXKN0jFqMkKRPxWyDImpbkCCeyz9n/Ut4SskAreFiSTahkE\nQclu0IgT+RRjScSIx1TwXmARiZ/0PNMyKhtUFAppOjYjS3N1emeoDcVF2bVj4tCF\nufhWDsGMwpjZ2XGZ7D5eVRxLCZRJEZAn7fSFiuCooBzXI/BO1LaP2CcQkiwzz067\nRNlnCsDlAgMBAAECggEAF+YEcMabT4MWkOiBNX5D5/IGBqWwNaJbT28itaJQS9wY\nd0EI8lsURJUrJczpWe9xBEAGmmEfbhqSjM1nfFEdZcaCIP9LplAqx0DbhCNqrGBf\ny3F3EkC2Aye5ZAbRm8o9gd57ihHSRhX3QcwJZ0M9vcicgWzloHvbuzDiy7prgs3s\nLW8kbnPvVdo9eexriP1vLJ6UHidzB71uIHOXL4moOHyWrkALuVIwmM+2lJ9tjEEc\nyqn6Q/SBykchA6bcZmmu4YpXWgOKna7VhKgwERXhFPc+EvCOPqoeyn/116Xn8yPs\nKJVXP3I94Oh7Sx1Ntm/41W6X7Va0tvO/M+az9mJ9gQKBgQDsK2/+njMcfVvcUFrd\n3770AuyzLtkwmvwe0C8qIMZ1Losk4AKHZsuWqI4JytVm79fRdzbUa1NknWGMiJoI\nlDVpn/vfFbdFYgudLjIBYB0iIdbByHtetDi741GvDUajD0PqII9lgJgwsimpFP8O\nHKE9/6Ppdutt3fuYVmB/pRrHVQKBgQDphyJUb7cSxY6/dqBw0e9VXJmrCyjpAzBJ\n3B6/l0DNu39KMUa/KYWkHfg4Q0C3p7CtpiW9cG/gpSZeJmxl1bd1yKSi6xXPHDMQ\nkbazzK0FgZZOSxhPWcBGqqplS/8ZwSrY7eSEAU3FwSMhcbIzRBm4dgaOc71ZNwjO\n/D3eDOzzUQKBgAMmSSYSIghdO55ii/OtijRi3Zk+JLNbPcWDbT2Ylkz1w/FH84Cu\nxERMFyjWRaZLyIsIlfibPc93sddX8wXuRBAWjBtbhMguGI2OEiimiXztCpom/E41\nBRSsYWh+OtTt3TAAIyltX5o2pguVNhmQFC5pfFwes+ERNsu/SyYoo4TJAoGAZgnh\n+jsGJ3GjOg2/dQyGIypfCtnJemcmRl+kH9sbOcnfiK+XVhfyiQ9/UjYwpQ7kqDuc\n6fWjLOl8pk7rtmN30kNljLpjwSd1OJwy1MVuJKXG41b0vFdfKIGSCsj2Im7BJiBs\nZTGcpfgKPabMUpJDGtKXcs8nwT/G3YpiDhBfyMECgYEAjvj8x0xQinZ2z7SNWHHE\n4gCdakazfya1kCKVj6hKL86K1skgXT5LGfb3fVMvOq7AL+SsIT3UQ073bDSlr9R/\ng/cMZ/LyTDC9MggDUWGMI0Nl2VVVa8e8q/1cDnyQTEWR8t5iFYT7aKfc6D5dbu5r\nnrM63j755RaVyWvFodxdd9U=\n-----END PRIVATE KEY-----\n",
+    "client_email": "gidalo-service@gidalo.iam.gserviceaccount.com",
+    "client_id": "112721445285970893082",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gidalo-service%40gidalo.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
