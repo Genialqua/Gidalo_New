@@ -8,8 +8,8 @@ const router = express.Router();
 
 // Google Cloud Storage setup
 const storageClient = new Storage({
-  //credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
-  keyFilename: '/Users/admin/Gidalo_new/backend/gidalo_cloud.json',
+  credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
+  //keyFilename: '/Users/admin/Gidalo_new/backend/gidalo_cloud.json',
     projectId: 'gidalo',
 });
 const bucketName = 'gidalo_bucket';
