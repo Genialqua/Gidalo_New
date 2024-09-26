@@ -22,7 +22,7 @@ router.get('/user/:userId', getPropertiesByUser);
 router
   .route('/:id')
   .get(getPropertyById)
-  .put(protect, adminOrAgent, admin,agent, checkObjectId, updateProperty)
+  .put(protect, adminOrAgent, checkObjectId, updateProperty)
   .delete(protect, adminOrAgent, checkObjectId, deleteproperty);
 
 export default router;
