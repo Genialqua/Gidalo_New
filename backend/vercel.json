@@ -17,10 +17,5 @@
       
     }
     
-  ],
-  "scripts": [
-    {
-  "start": "node --openssl-legacy-provider backend/server.js"
-}
-] 
+  ]
 }
