@@ -11,11 +11,11 @@ import {
     updateUser,
     getUserById
     } from '../controllers/userController.js';
-import { protect, admin, agent} from '../middleware/authMiddleware.js'
+import { protect, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router();
 
-router.route('/').post(registerUser).get(protect, admin, getUsers,agent);
+router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.route('/login').post(authUser);
 router.route('/logout').post(logoutUser);
 router.route('/profile').get(protect, getUserprofile).put(protect, updateUserprofile);
