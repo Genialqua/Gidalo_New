@@ -38,6 +38,7 @@ import ShortletBookingScreen from './screens/ShortletBookingScreen.jsx';
 import WarehouseScreen from './screens/WarehouseScreen.jsx';
 import BoysQuartersScreen from './screens/BoysQuartersScreen.jsx';
 import HomeMoversScreen from './screens/HomeMoversScreen.jsx';
+import LandingPage from './screens/LandingPage.jsx';
 import store from './store';
 import { Provider } from 'react-redux';
 
@@ -45,7 +46,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />}>
-        <Route index={true} path="/" element={<HomeScreen />} />
+        <Route index={true} path="/" element={<LandingPage />} />
+
+        <Route path="/home" element={<HomeScreen />} />
         <Route path="/search/:keyword" element={<HomeScreen />} />
         <Route path="/page/:pageNumber" element={<HomeScreen />} />
         <Route path="/search/:keyword/page/:pageNumber" element={<HomeScreen />} />
@@ -89,6 +92,7 @@ const router = createBrowserRouter(
           <Route path="/agent/propertieslist" element={<AgentPropertyListScreen />} />
           <Route path="/agent/user/:id/edit" element={<UserEditScreen />} />
         </Route>
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Route>
     </>
   )
