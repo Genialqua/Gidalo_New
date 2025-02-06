@@ -13,7 +13,7 @@
     "data:destroy": "node backend/seeder.js -d",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "author": "Frederick Aleoke-Malachi",
+  "author": "Frederick Funsho Aleoke-Malachi",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.2",
