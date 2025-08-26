@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     tools {
-        nodejs "NodeJS-18"  
+        nodejs "NodeJS-18"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com:Genialqua/https://github.com/Genialqua/Gidalo_New.git'
+                git branch: 'main', url: 'https://github.com/Genialqua/Gidalo_New.git'
             }
         }
 
@@ -21,14 +21,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build --prefix frontend'
             }
         }
 
-        stage('Run Server') {
-            steps {
-                sh 'npm run start &'
+        stage('Test') {
+            parallel {
+                stage('Backend Tests') {
+                    steps {
+                        sh 'npm test -- --reporters=default --reporters=jest-junit --outputDirectory=./test-results/backend'
+                    }
+                }
+                stage('Frontend Tests') {
+                    steps {
+                        sh 'npm test --prefix frontend -- --reporters=default --reporters=jest-junit --outputDirectory=./test-results/frontend'
+                    }
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            junit 'test-results/**/*.xml'
         }
     }
 }
