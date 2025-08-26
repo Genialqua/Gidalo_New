@@ -38,6 +38,17 @@ import ShortletBookingScreen from './screens/ShortletBookingScreen.jsx';
 import WarehouseScreen from './screens/WarehouseScreen.jsx';
 import BoysQuartersScreen from './screens/BoysQuartersScreen.jsx';
 import HomeMoversScreen from './screens/HomeMoversScreen.jsx';
+import BuildersMartScreen from './screens/BuildersMartScreen.jsx';
+import WindowsScreen from './screens/WindowsScreen.jsx';
+import DoorsScreen from './screens/DoorsScreen.jsx';
+import GatesScreen from './screens/GatesScreen.jsx';
+import TilesandMarbleScreen from './screens/TilesandMarbleScreen.jsx';
+import KitchenScreen from './screens/KitchenScreen.jsx';
+import BathroomScreen from './screens/BathRoomScreen.jsx';
+import LightsandSwitchScreen from './screens/LightsandSwitchScreen.jsx';
+import WardrobesandCabinetsScreen from './screens/WardrobesandCabinetsScreen.jsx';
+import GlassandMirrorScreen from './screens/GlassandMirror.jsx';
+import OthersScreen from './screens/OthersScreen.jsx';
 import LandingPage from './screens/LandingPage.jsx';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -60,6 +71,17 @@ const router = createBrowserRouter(
         <Route path="/boysQuarters" element={<BoysQuartersScreen />} />
         <Route path="/warehouses" element={<WarehouseScreen />} />
         <Route path="/homemovers" element={<HomeMoversScreen />} />
+        <Route path="/buildersmart" element={<BuildersMartScreen />} />
+        <Route path="/buildersmart/bathroom" element={<BathroomScreen />} />
+        <Route path="/buildersmart/windows" element={<WindowsScreen />} />
+        <Route path="/buildersmart/doors" element={<DoorsScreen />} />
+        <Route path="/buildersmart/gates" element={<GatesScreen />} />
+        <Route path="/buildersmart/tilesandmarble" element={<TilesandMarbleScreen />} />
+        <Route path="/buildersmart/kitchen" element={<KitchenScreen />} />
+        <Route path="/buildersmart/others" element={<OthersScreen />} />
+        <Route path="/buildersmart/lightsandswitch" element={<LightsandSwitchScreen />} />
+        <Route path="/buildersmart/wardrobesandcabinets" element={<WardrobesandCabinetsScreen />} />
+        <Route path="/buildersmart/glassandmirror" element={<GlassandMirrorScreen />} />
         <Route path="/dubaiproperties" element={<DubaiPropertiesScreen />} />
         <Route path="/forRent" element={<ForRentScreen />} />
         <Route path="/sharedapartment" element={<SharedApartmentScreen />} />

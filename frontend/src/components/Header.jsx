@@ -152,6 +152,12 @@ const Header = () => {
                 <strong>Home Movers</strong>
               </Link>
             </Nav>
+
+            <Nav>
+              <Link to="/buildersmart" className='nav-link mx-3'>
+                <strong>Builders Mart</strong>
+              </Link>
+            </Nav>
       </Navbar>
     </header>
   );
